@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { DropdownI18nComponent } from './dropdown-i18n/dropdown-i18n.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
+import { FormsModule } from '@angular/forms';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { LogoComponent } from './logo/logo.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
@@ -21,7 +22,7 @@ import { TabsComponent } from './tabs/tabs.component';
 		LogoComponent,
 		SpinnerComponent,
 	],
-	imports: [CommonModule, LazyLoadImageModule, ShortenerTextPipe, RouterModule],
+	imports: [CommonModule, LazyLoadImageModule, ShortenerTextPipe, RouterModule, FormsModule],
 	exports: [
 		SearchComponent,
 		DropdownI18nComponent,

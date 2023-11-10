@@ -1,29 +1,20 @@
 <div (click)="onNavigate()"
-  class="cursor-pointer hidden md:block lg:block w-full lg:w-[200px] h-fit group border-4 border-gray-200 rounded-lg"
->
+  class="cursor-pointer hidden md:block lg:block w-full lg:w-[200px] h-fit group border-4 border-gray-200 rounded-lg">
   <div class="relative overflow-hidden">
-    <img
-      class="h-[300px] lg:h-full w-full object-cover rounded-lg"
-      [lazyLoad]="imageUrls"
-    />
+    <img class="h-[300px] lg:h-full w-full object-cover rounded-lg" [lazyLoad]="imageUrls" />
 
     <div
-      class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg"
-    >
+      class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
       <div class="card-content absolute top-0">
         <h2 class="title">
-          {{ movies?.title | shortenerText : 20 }}
+          {{ movies?.title | shortenerText : 15 }}
         </h2>
         <p class="description">
-          {{ movies?.overview | shortenerText : 100 }}
+          {{ movies?.overview | shortenerText : 200 }}
         </p>
-        <button
-          class="absolute bottom-1 left-5 inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md"
-        >
-          <img [src]="playIcon" alt="Play" />
-
-          Watch Trailer
-        </button>
+        <p class="absolute bottom-1 text-left tracking-tight text-xs font-bold text-white">
+          {{ movies?.release_date }}
+        </p>
       </div>
     </div>
   </div>
@@ -31,51 +22,19 @@
 
 <div class="sm:hidden py-2">
   <div (click)="onNavigate()">
-    <div
-      class="flex max-w-sm w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto"
-    >
+    <div class="flex max-w-sm w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto">
       <div
-        class="overflow-hidden rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card"
-        data-movie-id="438631"
-      >
+        class="overflow-hidden rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card">
         <div
-          class="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900 to-transparent"
-        ></div>
-        <div
-          class="relative cursor-pointer group z-10 px-10 pt-10 space-y-6 movie_info"
-          data-lity=""
-          href="https://www.youtube.com/embed/aSHs224Dge0"
-        >
+          class="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900 to-transparent">
+        </div>
+        <div class="relative cursor-pointer group z-10 px-10 pt-10 space-y-6">
           <div class="align-self-end w-full">
             <div class="h-32"></div>
             <div class="space-y-6 detail_info">
               <div class="flex flex-col space-y-2 inner">
-                <a
-                  class="relative flex items-center w-min flex-shrink-0 p-1 text-center text-white bg-red-500 rounded-full group-hover:bg-red-700"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-10 h-10"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM9.555 7.168A1 1 0 0 0 8 8v4a1 1 0 0 0 1.555.832l3-2a1 1 0 0 0 0-1.664l-3-2z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <div
-                    class="absolute transition opacity-0 duration-500 ease-in-out transform group-hover:opacity-100 group-hover:translate-x-16 text-xl font-bold text-white group-hover:pr-2"
-                  >
-                    Trailer
-                  </div>
-                </a>
-                <h3
-                  class="text-2xl font-bold text-white"
-                  data-unsp-sanitized="clean"
-                >
-                  {{ movies?.title  }}
+                <h3 class="text-2xl font-bold text-white">
+                  {{ movies?.title }}
                 </h3>
               </div>
               <div *ngIf="movies" class="flex flex-row justify-between datos">
@@ -102,33 +61,7 @@
             </div>
           </div>
         </div>
-        <img
-          class="absolute inset-0 transform w-full -translate-y-4"
-          [src]="imageUrls"
-        />
-        <div class="poster__footer flex flex-row relative pb-10 space-x-4 z-10">
-          <a
-            class="flex items-center py-2 px-4 rounded-full mx-auto text-white bg-red-500 hover:bg-red-700"
-            href="http://www.google.com/calendar/event?action=TEMPLATE&amp;dates=20210915T010000Z%2F20210915T010000Z&amp;text=Dune%20%2D%20Movie%20Premiere&amp;location=http%3A%2F%2Fmoviedates.info&amp;details=This%20reminder%20was%20created%20through%20http%3A%2F%2Fmoviedates.info"
-            target="_blank"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <div class="text-sm text-white ml-2">Set reminder</div>
-          </a>
-        </div>
+        <img class="absolute inset-0 transform w-full -translate-y-4" [src]="imageUrls" />
       </div>
     </div>
   </div>

@@ -11,18 +11,29 @@
         <span class="sr-only">Open sidebar</span>
         <img [src]="menuIcons" alt="Open Sidebar" class="h-6 w-6">
       </button>
-
     </div>
+
     <div class="flex space-x-1 items-center">
       <div>
-        <app-search></app-search>
+        <app-search (clicked)="search($event)"></app-search>
       </div>
-      <div>
+      <!-- <div>
         <app-dropdown-profile></app-dropdown-profile>
+      </div> -->
+      <div>
+        <button (click)="favoritePage()" data-tooltip-target="tooltip-default" type="button">
+          <img [src]="favIcon" class="fav flex items-center mt-2" alt="Favorite" />
+        </button>
+        <div id="tooltip-default" role="tooltip"
+          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+          Your Favorite
+          <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
       </div>
       <div>
         <app-dropdown-i18n></app-dropdown-i18n>
       </div>
+
     </div>
   </div>
 </nav>

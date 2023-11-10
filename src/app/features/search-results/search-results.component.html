@@ -1,0 +1,10 @@
+  <div class="flex container mx-auto justify-center">
+    <h1
+      class="bg-gradient-to-r from-red-400 via-blue-500 to-purple-600 bg-clip-text text-sm font-extrabold text-transparent sm:text-5xl">
+      Search Result: {{ query }}</h1>
+  </div>
+  <div class="grid grid-cols-6 gap-4 p-4 mt-4">
+    <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackById">
+      <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+    </ng-container>
+  </div>

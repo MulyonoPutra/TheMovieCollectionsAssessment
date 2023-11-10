@@ -55,6 +55,15 @@ export class MovieService {
 		);
 	}
 
+	search(query: string): Observable<any> {
+		const url = `${this.endpoint}/search/movie?query=${query}`;
+		const params = { api_key: this.apiKey };
+		return this.http.get<any>(url, { params }).pipe(
+			map((data) => data),
+			catchError(this.handleError),
+		);
+	}
+
 	public handleError(res: HttpErrorResponse) {
 		return throwError(() => new Error(res.error.message));
 	}

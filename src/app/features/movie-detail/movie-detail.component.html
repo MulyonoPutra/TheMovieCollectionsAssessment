@@ -1,9 +1,9 @@
 <section>
   <div *ngIf="movie" class="wrapper" [lazyLoad]="imageUrls" alt="image description">
     <div>
-      <button class="absolute top-0 right-1 cursor-pointer" (click)="toggleFavorite()">
-        <img *ngIf="!isFavorite" [src]="favIcon" alt="Fav White" />
-        <img *ngIf="isFavorite" [src]="favRedIcon" alt="Fav Red" class="fav" />
+      <button class="absolute top-2 right-2 cursor-pointer" (click)="toggleFavorite()">
+        <img *ngIf="!isFavorite" [src]="favIcon" alt="Fav White" class="h-10 w-10" />
+        <img *ngIf="isFavorite" [src]="favRedIcon" alt="Fav Red" class="fav h-10 w-10" />
       </button>
     </div>
     <div class="title">

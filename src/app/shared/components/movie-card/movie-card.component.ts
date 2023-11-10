@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { HttpUrl } from '../../utils/http-url';
 import { Movie } from 'src/app/core/models/movie';
+import { MovieDetail } from 'src/app/core/models/movie-detail';
 import { StaticIcons } from '../../static/static-icons';
 import { Trending } from 'src/app/core/models/trending';
 
@@ -11,7 +12,7 @@ import { Trending } from 'src/app/core/models/trending';
 	styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
-	@Input() movies?: Trending | Movie;
+	@Input() movies?: Trending | Movie | MovieDetail;
 	@Output() clicked = new EventEmitter<number>();
 
 	imageUrls!: string;

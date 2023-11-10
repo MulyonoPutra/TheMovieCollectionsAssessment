@@ -18,20 +18,17 @@ import { StaticIcons } from 'src/app/shared/static/static-icons';
 export class MovieDetailComponent implements OnInit, OnDestroy {
 	private destroySubject = new Subject<void>();
 	movie!: MovieDetail;
-	filter: string = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
-
-	constructor(
-		private route: ActivatedRoute,
-		private readonly movieService: MovieService,
-	) {}
 	imageUrls!: string;
 	poster!: string;
 	isFavorite: boolean = false;
 	favIcon = StaticIcons.fav;
 	favRedIcon = StaticIcons.favRed;
+	movieStore: MovieDetail[] = [];
 
-	movies: any[] = [];
-	movieStore: any[] = [];
+	constructor(
+		private route: ActivatedRoute,
+		private readonly movieService: MovieService,
+	) {}
 
 	ngOnInit(): void {
 		this.findById();
@@ -43,7 +40,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
 	}
 
-	findById(): void {
+	private findById(): void {
 		const id = this.route.snapshot.paramMap.get('id')!;
 		this.movieService
 			.findMovieById(id)
@@ -61,36 +58,27 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	private setImageUrl(response: MovieDetail) {
-		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/${this.filter}/${response?.backdrop_path}`;
-		this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${response!.poster_path}`;
-	}
-
 	toggleFavorite(): void {
 		// Toggle the isFavorite flag
 		this.isFavorite = !this.isFavorite;
 
 		const index = this.movieStore.findIndex((movie) => movie.id === this.movie?.id);
 
-		if (this.isFavorite) {
-			// Add the movie to the array only if it's not already in the array
-			if (index === -1) {
-				this.movieStore.push(this.movie);
-			}
-		} else {
-			// Remove the movie from the array if it's in the array and is no longer a favorite
-			if (index !== -1) {
-				this.movieStore.splice(index, 1);
-			}
+		if (this.isFavorite && index === -1) {
+			this.movieStore.push(this.movie);
+		} else if (!this.isFavorite && index !== -1) {
+			this.movieStore.splice(index, 1);
 		}
 
 		// Convert the updated array to a JSON string
-		const updatedArrayString = JSON.stringify(this.movieStore);
-		localStorage.setItem('MOVIES', updatedArrayString);
+		const movieStoreUpdated = JSON.stringify(this.movieStore);
+		localStorage.setItem('MOVIES', movieStoreUpdated);
 	}
 
-	loadStatusFavorite() {
-		this.isFavorite = this.movie.isFavorited;
+	private setImageUrl(response: MovieDetail) {
+		const filter = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
+		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/${filter}/${response?.backdrop_path}`;
+		this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${response!.poster_path}`;
 	}
 
 	ngOnDestroy(): void {

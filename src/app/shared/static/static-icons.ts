@@ -4,4 +4,5 @@ export const StaticIcons = {
 	favRed: '../../../../assets/icons/svg/icon-fav-red.svg',
 	play: '../../../../assets/icons/svg/icon-play.svg',
 	arrowUp: '../../../../assets/icons/svg/icon-arrow-up.svg',
+  favLg: '../../../../assets/icons/svg/icon-fav-lg.svg',
 };

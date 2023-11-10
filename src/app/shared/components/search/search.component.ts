@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
+
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-search',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
 	styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
-	onSearch() {}
+	query!: string;
+	router = inject(Router);
+
+	@Output() clicked = new EventEmitter<string>();
+
+	search(): void {
+		this.clicked.emit(this.query);
+	}
 }

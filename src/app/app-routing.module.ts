@@ -18,6 +18,16 @@ const routes: Routes = [
 				loadComponent: () =>
 					import('../app/features/movie-detail/movie-detail.component').then((m) => m.MovieDetailComponent),
 			},
+			{
+				path: 'favorites',
+				loadComponent: () =>
+					import('../app/features/favorite/favorite.component').then((m) => m.FavoriteComponent),
+			},
+			{
+				path: 'search',
+				loadComponent: () =>
+					import('../app/features/search-results/search-results.component').then((m) => m.SearchResultsComponent),
+			},
 		],
 	},
 ];
