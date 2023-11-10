@@ -1,17 +1,13 @@
-<nav class="bg-gray-900">
+<nav class="bg-[#00111C]">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <div class="hidden md:block lg:block">
       <app-logo></app-logo>
     </div>
 
     <div class="sm:hidden">
-      <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
+      <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"
-        class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
+        class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span class="sr-only">Open sidebar</span>
         <img [src]="menuIcons" alt="Open Sidebar" class="h-6 w-6">
       </button>
@@ -31,27 +27,17 @@
   </div>
 </nav>
 
-<button *ngIf="isMenuScrolled" (click)="scrollToTop()" class="scrolling z-50">
-  <img [src]="iconArrowUp" alt="Scroll to Top" class="w-6 h-6 m-auto arrow">
-</button>
-
-
-<aside
-  id="default-sidebar"
+<aside id="default-sidebar"
   class="sm:hidden fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-  aria-label="Sidebar"
->
+  aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     <ul class="space-y-2 font-medium" *ngFor="let item of menuSidebar; let i = index">
       <li>
-        <a
-          href="/"
-          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-        >
+        <a href="/"
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <span class="ml-3">{{item.title}}</span>
         </a>
       </li>
     </ul>
   </div>
 </aside>
-

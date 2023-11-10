@@ -7,9 +7,10 @@ import { Movie } from 'src/app/core/models/movie';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Tabs } from 'src/app/core/models/tabs';
+import { TopRated } from 'src/app/core/models/top-rated';
 import { Trending } from 'src/app/core/models/trending';
 
-type TrackByItemType = Trending | Movie;
+type TrackByItemType = Trending | Movie | TopRated;
 
 @Component({
 	selector: 'app-movie-list',
@@ -21,6 +22,7 @@ type TrackByItemType = Trending | Movie;
 export class MovieListComponent implements OnInit, OnDestroy {
 	private destroySubject = new Subject<void>();
 	trending!: Trending[];
+	topRated!: TopRated[];
 	movies!: Movie[];
 	activeTabIndex = 0;
 
@@ -37,6 +39,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.findAllTrendings();
 		this.findPopular();
+    this.findTopRated();
 	}
 
 	findAllTrendings() {
@@ -58,6 +61,17 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: Movie[]) => {
 					this.movies = response;
+				},
+			});
+	}
+
+	findTopRated() {
+		this.moviesService
+			.findTopRatedMovies()
+			.pipe(takeUntil(this.destroySubject))
+			.subscribe({
+				next: (response: TopRated[]) => {
+					this.topRated = response;
 				},
 			});
 	}

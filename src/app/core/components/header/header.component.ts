@@ -15,11 +15,5 @@ export class HeaderComponent {
 	menuIcons = STATIC_ICONS.menu;
 	menuSidebar = STATIC_SIDEBAR_MENU;
 
-	iconArrowUp = STATIC_ICONS.arrowUp;
 
-	protected isMenuScrolled: boolean = false;
-
-	protected scrollToTop() {
-		document.body.scrollIntoView({ behavior: 'smooth' });
-	}
 }

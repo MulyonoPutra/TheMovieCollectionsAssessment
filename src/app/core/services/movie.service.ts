@@ -1,10 +1,11 @@
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
 import { HttpResponseEntity } from '../models/http-response-entity';
 import { HttpUrl } from 'src/app/shared/utils/http-url';
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie';
+import { TopRated } from '../models/top-rated';
 import { Trending } from '../models/trending';
 
 @Injectable({
@@ -20,12 +21,31 @@ export class MovieService {
 	findTrendingMovies(time: string): Observable<Trending[]> {
 		const url = `${this.endpoint}/trending/all/${time}`;
 		const params = { api_key: this.apiKey };
-		return this.http.get<HttpResponseEntity<Trending[]>>(url, { params }).pipe(map((response) => response.results));
+		return this.http.get<HttpResponseEntity<Trending[]>>(url, { params }).pipe(
+			map((response) => response.results),
+			catchError(this.handleError),
+		);
 	}
 
 	findPopularMovies(): Observable<Movie[]> {
 		const url = `${this.endpoint}/movie/popular`;
 		const params = { api_key: this.apiKey };
-		return this.http.get<HttpResponseEntity<Movie[]>>(url, { params }).pipe(map((response) => response.results));
+		return this.http.get<HttpResponseEntity<Movie[]>>(url, { params }).pipe(
+			map((response) => response.results),
+			catchError(this.handleError),
+		);
+	}
+
+	findTopRatedMovies(): Observable<TopRated[]> {
+		const url = `${this.endpoint}/movie/top_rated`;
+		const params = { api_key: this.apiKey };
+		return this.http.get<HttpResponseEntity<TopRated[]>>(url, { params }).pipe(
+			map((response) => response.results),
+			catchError(this.handleError),
+		);
+	}
+
+	public handleError(res: HttpErrorResponse) {
+		return throwError(() => new Error(res.error.message));
 	}
 }

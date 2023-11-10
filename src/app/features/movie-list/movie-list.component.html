@@ -80,3 +80,38 @@
   </div>
 </section>
 <!-- Popular Section -->
+
+<section>
+  <div class="flex space-x-4 py-2">
+    <div class="flex items-center">
+      <h3
+        class="bg-gradient-to-r from-blue-300 via-blue-700 to-purple-600 bg-clip-text text-2xl font-extrabold text-transparent"
+      >
+        Top Rated
+      </h3>
+    </div>
+  </div>
+  <div class="lg:max-w-full overflow-x-auto">
+    <div class="hidden lg:block md:hidden mb-2">
+      <div class="flex space-x-4">
+        <ng-container
+          *ngFor="let movie of topRated; let i = index; trackBy: trackByFn"
+        >
+          <div>
+            <app-movie-card [movies]="movie"></app-movie-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="lg:hidden md:grid md:grid-cols-4">
+      <ng-container
+        *ngFor="let movie of topRated; let i = index; trackBy: trackByFn"
+      >
+        <div>
+          <app-movie-card [movies]="movie"></app-movie-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>
