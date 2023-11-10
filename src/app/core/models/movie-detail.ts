@@ -30,4 +30,5 @@ export interface MovieDetail {
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
+	isFavorited: boolean;
 }

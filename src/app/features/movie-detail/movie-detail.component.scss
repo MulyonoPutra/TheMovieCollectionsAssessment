@@ -1,11 +1,11 @@
 .wrapper {
-  @apply relative bg-cover bg-center bg-no-repeat lg:h-[500px] h-[550px] rounded-lg p-4;
+	@apply relative bg-cover bg-center bg-no-repeat lg:h-[500px] h-[550px] rounded-lg p-4;
 
-  .title {
-    @apply mx-auto max-w-screen-xl text-left lg:left-[400px] absolute lg:py-16;
+	.title {
+		@apply mx-auto max-w-screen-xl text-left lg:left-[400px] absolute lg:py-16;
 
-    h1 {
-      @apply bg-gradient-to-r from-red-400 via-orange-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl;
-    }
-  }
+		h1 {
+			@apply bg-gradient-to-r from-red-400 via-orange-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl;
+		}
+	}
 }

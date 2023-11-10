@@ -16,5 +16,4 @@ export class SharedService {
 	sendPosterData(data: Movie[]) {
 		this.backdropSubject.next(data);
 	}
-
 }

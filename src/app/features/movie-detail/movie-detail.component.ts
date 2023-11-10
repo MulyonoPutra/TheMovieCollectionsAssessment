@@ -30,8 +30,17 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	favIcon = StaticIcons.fav;
 	favRedIcon = StaticIcons.favRed;
 
+	movies: any[] = [];
+	movieStore: any[] = [];
+
 	ngOnInit(): void {
 		this.findById();
+		// Load the favorite status from local storage
+		const localStore = localStorage.getItem('MOVIES');
+		this.movieStore = localStore ? JSON.parse(localStore) : [];
+
+		// Set isFavorite based on whether the movie is in the array
+		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
 	}
 
 	findById(): void {
@@ -42,6 +51,11 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: MovieDetail) => {
 					this.movie = response;
+					// Set isFavorite based on whether the movie is in the array
+					this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
+
+					// Update the movie's isFavorited property
+					this.movie.isFavorited = this.isFavorite;
 					this.setImageUrl(response);
 				},
 			});
@@ -53,7 +67,30 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	}
 
 	toggleFavorite(): void {
+		// Toggle the isFavorite flag
 		this.isFavorite = !this.isFavorite;
+
+		const index = this.movieStore.findIndex((movie) => movie.id === this.movie?.id);
+
+		if (this.isFavorite) {
+			// Add the movie to the array only if it's not already in the array
+			if (index === -1) {
+				this.movieStore.push(this.movie);
+			}
+		} else {
+			// Remove the movie from the array if it's in the array and is no longer a favorite
+			if (index !== -1) {
+				this.movieStore.splice(index, 1);
+			}
+		}
+
+		// Convert the updated array to a JSON string
+		const updatedArrayString = JSON.stringify(this.movieStore);
+		localStorage.setItem('MOVIES', updatedArrayString);
+	}
+
+	loadStatusFavorite() {
+		this.isFavorite = this.movie.isFavorited;
 	}
 
 	ngOnDestroy(): void {

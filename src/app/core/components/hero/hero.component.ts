@@ -12,5 +12,5 @@ import { RouterModule } from '@angular/router';
 	styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent {
-  @Input() poster!: string;
+	@Input() poster!: string;
 }

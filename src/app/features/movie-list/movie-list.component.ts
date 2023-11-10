@@ -65,7 +65,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: Movie[]) => {
 					this.movies = response;
-          this.generateBackdropPath(response)
+					this.generateBackdropPath(response);
 				},
 			});
 	}
