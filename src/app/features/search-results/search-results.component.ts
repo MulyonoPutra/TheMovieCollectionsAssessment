@@ -30,8 +30,8 @@ export class SearchResultsComponent implements OnInit {
 			if (this.query) {
 				this.movieService.search(this.query).subscribe({
 					next: (data) => {
-            this.movies = data.results;
-          },
+						this.movies = data.results;
+					},
 				});
 			}
 		});

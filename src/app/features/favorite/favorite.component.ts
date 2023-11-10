@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class FavoriteComponent implements OnInit {
 	movies!: MovieDetail[];
 
-  router = inject(Router);
+	router = inject(Router);
 
 	ngOnInit(): void {
 		this.getlocalStore();
