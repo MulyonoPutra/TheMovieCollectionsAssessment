@@ -1,5 +1,15 @@
 <section>
   <div *ngIf="movie" class="wrapper" [lazyLoad]="imageUrls" alt="image description">
+            <div>
+          <button
+            class="absolute top-0 right-1 cursor-pointer"
+            (click)="toggleFavorite()"
+          >
+            <img *ngIf="isFavorite" [src]="favIcon" alt="Fav" />
+
+            <img *ngIf="!isFavorite" [src]="favRedIcon" alt="Fav" class="fav" />
+          </button>
+        </div>
     <div class="title">
       <h1>
         {{ movie.title }}

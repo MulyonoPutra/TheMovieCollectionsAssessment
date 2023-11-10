@@ -1,4 +1,4 @@
-export const STATIC_SIDEBAR_MENU = [
+export const SidebarMenu = [
 	{
 		title: 'Trending',
 	},

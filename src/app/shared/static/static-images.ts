@@ -1,3 +1,3 @@
-export const STATIC_IMAGES = {
+export const StaticImages = {
 	logo: '../../../../assets/images/ticket.png',
 };

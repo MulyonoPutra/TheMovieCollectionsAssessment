@@ -1,4 +1,4 @@
-export const STATIC_ICONS = {
+export const StaticIcons = {
 	menu: '../../../../assets/icons/svg/icon-menu.svg',
 	fav: '../../../../assets/icons/svg/icon-fav.svg',
 	favRed: '../../../../assets/icons/svg/icon-fav-red.svg',

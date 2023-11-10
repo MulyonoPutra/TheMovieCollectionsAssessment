@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { STATIC_IMAGES } from '../../static/static-images';
+import { StaticImages } from '../../static/static-images';
 
 @Component({
 	selector: 'app-logo',
@@ -7,5 +7,5 @@ import { STATIC_IMAGES } from '../../static/static-images';
 	styleUrls: ['./logo.component.scss'],
 })
 export class LogoComponent {
-	logo: string = STATIC_IMAGES.logo;
+	logo: string = StaticImages.logo;
 }

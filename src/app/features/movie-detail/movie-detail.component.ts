@@ -7,6 +7,7 @@ import { HttpUrl } from 'src/app/shared/utils/http-url';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MovieDetail } from 'src/app/core/models/movie-detail';
 import { MovieService } from 'src/app/core/services/movie.service';
+import { StaticIcons } from 'src/app/shared/static/static-icons';
 
 @Component({
 	standalone: true,
@@ -25,6 +26,9 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	) {}
 	imageUrls!: string;
 	poster!: string;
+	isFavorite: boolean = false;
+	favIcon = StaticIcons.fav;
+	favRedIcon = StaticIcons.favRed;
 
 	ngOnInit(): void {
 		this.findById();
@@ -38,10 +42,18 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: MovieDetail) => {
 					this.movie = response;
-					this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/${this.filter}/${this.movie?.backdrop_path}`;
-					this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${this.movie!.poster_path}`;
+					this.setImageUrl(response);
 				},
 			});
+	}
+
+	private setImageUrl(response: MovieDetail) {
+		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/${this.filter}/${response?.backdrop_path}`;
+		this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${response!.poster_path}`;
+	}
+
+	toggleFavorite(): void {
+		this.isFavorite = !this.isFavorite;
 	}
 
 	ngOnDestroy(): void {
