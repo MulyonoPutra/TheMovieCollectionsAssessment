@@ -5,6 +5,7 @@ import { HttpResponseEntity } from '../models/http-response-entity';
 import { HttpUrl } from 'src/app/shared/utils/http-url';
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie';
+import { MovieDetail } from '../models/movie-detail';
 import { TopRated } from '../models/top-rated';
 import { Trending } from '../models/trending';
 
@@ -41,6 +42,15 @@ export class MovieService {
 		const params = { api_key: this.apiKey };
 		return this.http.get<HttpResponseEntity<TopRated[]>>(url, { params }).pipe(
 			map((response) => response.results),
+			catchError(this.handleError),
+		);
+	}
+
+	findMovieById(id: string): Observable<MovieDetail> {
+		const url = `${this.endpoint}/movie/${id}`;
+		const params = { api_key: this.apiKey };
+		return this.http.get<MovieDetail>(url, { params }).pipe(
+			map((data) => data),
 			catchError(this.handleError),
 		);
 	}
