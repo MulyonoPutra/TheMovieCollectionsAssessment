@@ -1,8 +1,8 @@
-import { BelongsToCollection } from "./belongs-to-collection";
-import { Genre } from "./genre";
-import { ProductionCompany } from "./production-company";
-import { ProductionCountry } from "./production-country";
-import { SpokenLanguage } from "./spoken-language";
+import { BelongsToCollection } from './belongs-to-collection';
+import { Genre } from './genre';
+import { ProductionCompany } from './production-company';
+import { ProductionCountry } from './production-country';
+import { SpokenLanguage } from './spoken-language';
 
 export interface MovieDetail {
 	adult: boolean;
@@ -31,12 +31,3 @@ export interface MovieDetail {
 	vote_average: number;
 	vote_count: number;
 }
-
-
-
-
-
-
-
-
-

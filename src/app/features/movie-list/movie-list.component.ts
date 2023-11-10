@@ -39,7 +39,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.findAllTrendings();
 		this.findPopular();
-    this.findTopRated();
+		this.findTopRated();
 	}
 
 	findAllTrendings() {

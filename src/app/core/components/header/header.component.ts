@@ -14,6 +14,4 @@ import { STATIC_SIDEBAR_MENU } from 'src/app/shared/static/static-sidebar-menu';
 export class HeaderComponent {
 	menuIcons = STATIC_ICONS.menu;
 	menuSidebar = STATIC_SIDEBAR_MENU;
-
-
 }
