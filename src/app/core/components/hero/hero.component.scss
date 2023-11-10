@@ -1,0 +1,11 @@
+.wrapper {
+  @apply bg-cover bg-center bg-no-repeat p-6 h-[400px] rounded-lg;
+
+  .title {
+    @apply py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12;
+
+    h1 {
+      @apply bg-gradient-to-r from-green-300 via-orange-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl;
+    }
+  }
+}

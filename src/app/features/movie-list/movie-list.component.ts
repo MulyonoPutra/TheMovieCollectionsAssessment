@@ -3,8 +3,11 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
+import { HeroComponent } from 'src/app/core/components/hero/hero.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Movie } from 'src/app/core/models/movie';
 import { MovieService } from 'src/app/core/services/movie.service';
+import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Tabs } from 'src/app/core/models/tabs';
 import { TopRated } from 'src/app/core/models/top-rated';
@@ -15,7 +18,7 @@ type TrackByItemType = Trending | Movie | TopRated;
 @Component({
 	selector: 'app-movie-list',
 	standalone: true,
-	imports: [CommonModule, ComponentsModule],
+	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, HeroComponent],
 	templateUrl: './movie-list.component.html',
 	styleUrls: ['./movie-list.component.scss'],
 })
@@ -34,6 +37,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	constructor(
 		private readonly moviesService: MovieService,
 		private readonly sharedService: SharedService,
+		private readonly router: Router,
 	) {}
 
 	ngOnInit(): void {
@@ -61,6 +65,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: Movie[]) => {
 					this.movies = response;
+          this.generateBackdropPath(response)
 				},
 			});
 	}
@@ -82,6 +87,21 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
 	trackByFn(index: number, item: TrackByItemType): number {
 		return item.id;
+	}
+
+	onNavigate(id: number): void {
+		this.router.navigateByUrl('/movie-detail/' + id);
+	}
+
+	poster!: string;
+
+	generateBackdropPath(data: any): string {
+		const url: string = 'https://www.themoviedb.org/t/p';
+		const filter: string = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
+		let randomIndex = Math.floor(Math.random() * data.length);
+		let backdrop = data[randomIndex].backdrop_path;
+		this.poster = `${url}/${filter}/${backdrop}`;
+		return this.poster;
 	}
 
 	ngOnDestroy(): void {

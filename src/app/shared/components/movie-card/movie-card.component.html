@@ -1,5 +1,5 @@
-<div
-  class="hidden md:block lg:block w-full lg:w-[200px] h-fit group border-4 border-gray-200 rounded-lg"
+<div (click)="onNavigate()"
+  class="cursor-pointer hidden md:block lg:block w-full lg:w-[200px] h-fit group border-4 border-gray-200 rounded-lg"
 >
   <div class="relative overflow-hidden">
     <img
@@ -41,7 +41,7 @@
 </div>
 
 <div class="sm:hidden py-2">
-  <div>
+  <div (click)="onNavigate()">
     <div
       class="flex max-w-sm w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto"
     >

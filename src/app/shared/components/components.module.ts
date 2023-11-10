@@ -5,6 +5,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { LogoComponent } from './logo/logo.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 import { TabsComponent } from './tabs/tabs.component';
@@ -18,7 +19,7 @@ import { TabsComponent } from './tabs/tabs.component';
 		MovieCardComponent,
 		LogoComponent,
 	],
-	imports: [CommonModule, LazyLoadImageModule, ShortenerTextPipe],
+	imports: [CommonModule, LazyLoadImageModule, ShortenerTextPipe, RouterModule],
 	exports: [
 		SearchComponent,
 		DropdownI18nComponent,

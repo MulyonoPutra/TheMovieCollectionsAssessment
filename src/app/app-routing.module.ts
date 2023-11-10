@@ -13,6 +13,11 @@ const routes: Routes = [
 				loadComponent: () =>
 					import('../app/features/movie-list/movie-list.component').then((m) => m.MovieListComponent),
 			},
+			{
+				path: 'movie-detail/:id',
+				loadComponent: () =>
+					import('../app/features/movie-detail/movie-detail.component').then((m) => m.MovieDetailComponent),
+			},
 		],
 	},
 ];

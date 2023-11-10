@@ -1,3 +1,6 @@
+<ng-container>
+  <app-hero [poster]="poster"></app-hero>
+
 <!-- Trending Section -->
 <section>
   <div class="flex space-x-4 py-2">
@@ -24,7 +27,7 @@
           *ngFor="let movie of trending; let i = index; trackBy: trackByFn"
         >
           <div>
-            <app-movie-card [movies]="movie"></app-movie-card>
+            <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
           </div>
         </ng-container>
       </div>
@@ -35,7 +38,7 @@
         *ngFor="let movie of trending; let i = index; trackBy: trackByFn"
       >
         <div>
-          <app-movie-card [movies]="movie"></app-movie-card>
+          <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
         </div>
       </ng-container>
     </div>
@@ -62,7 +65,7 @@
           *ngFor="let movie of movies; let i = index; trackBy: trackByFn"
         >
           <div>
-            <app-movie-card [movies]="movie"></app-movie-card>
+            <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
           </div>
         </ng-container>
       </div>
@@ -73,7 +76,7 @@
         *ngFor="let movie of movies; let i = index; trackBy: trackByFn"
       >
         <div>
-          <app-movie-card [movies]="movie"></app-movie-card>
+          <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
         </div>
       </ng-container>
     </div>
@@ -81,6 +84,7 @@
 </section>
 <!-- Popular Section -->
 
+<!-- Top Rated Section -->
 <section>
   <div class="flex space-x-4 py-2">
     <div class="flex items-center">
@@ -98,7 +102,7 @@
           *ngFor="let movie of topRated; let i = index; trackBy: trackByFn"
         >
           <div>
-            <app-movie-card [movies]="movie"></app-movie-card>
+            <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
           </div>
         </ng-container>
       </div>
@@ -109,9 +113,12 @@
         *ngFor="let movie of topRated; let i = index; trackBy: trackByFn"
       >
         <div>
-          <app-movie-card [movies]="movie"></app-movie-card>
+          <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
         </div>
       </ng-container>
     </div>
   </div>
 </section>
+<!-- Top Rated Section -->
+
+</ng-container>
