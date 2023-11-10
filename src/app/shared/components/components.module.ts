@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { TabsComponent } from './tabs/tabs.component';
 		TabsComponent,
 		MovieCardComponent,
 		LogoComponent,
+		SpinnerComponent,
 	],
 	imports: [CommonModule, LazyLoadImageModule, ShortenerTextPipe, RouterModule],
 	exports: [
@@ -27,6 +29,7 @@ import { TabsComponent } from './tabs/tabs.component';
 		TabsComponent,
 		MovieCardComponent,
 		LogoComponent,
+		SpinnerComponent,
 	],
 })
 export class ComponentsModule {}
