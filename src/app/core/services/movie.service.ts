@@ -2,32 +2,30 @@ import { Observable, map } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpResponseEntity } from '../models/http-response-entity';
+import { HttpUrl } from 'src/app/shared/utils/http-url';
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie';
 import { Trending } from '../models/trending';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class MovieService {
-  private readonly apiKey = '34bd9be2989668b394220b928e4c21e2';
-  private readonly apiUrl = 'https://api.themoviedb.org/3';
+	private readonly apiKey = HttpUrl.apiKey;
 
-  constructor(private http: HttpClient) {}
+	private readonly endpoint = `${HttpUrl.baseApiUrl}/${HttpUrl.resource}`;
 
-  findTrendingMovies(time: string): Observable<Trending[]> {
-    const url = `${this.apiUrl}/trending/all/${time}`;
-    const params = { api_key: this.apiKey };
-    return this.http
-      .get<HttpResponseEntity<Trending[]>>(url, { params })
-      .pipe(map((response) => response.results));
-  }
+	constructor(private http: HttpClient) {}
 
-  findPopularMovies(): Observable<Movie[]> {
-    const url = `${this.apiUrl}/movie/popular`;
-    const params = { api_key: this.apiKey };
-    return this.http
-      .get<HttpResponseEntity<Movie[]>>(url, { params })
-      .pipe(map((response) => response.results));
-  }
+	findTrendingMovies(time: string): Observable<Trending[]> {
+		const url = `${this.endpoint}/trending/all/${time}`;
+		const params = { api_key: this.apiKey };
+		return this.http.get<HttpResponseEntity<Trending[]>>(url, { params }).pipe(map((response) => response.results));
+	}
+
+	findPopularMovies(): Observable<Movie[]> {
+		const url = `${this.endpoint}/movie/popular`;
+		const params = { api_key: this.apiKey };
+		return this.http.get<HttpResponseEntity<Movie[]>>(url, { params }).pipe(map((response) => response.results));
+	}
 }

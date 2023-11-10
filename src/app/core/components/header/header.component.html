@@ -31,6 +31,11 @@
   </div>
 </nav>
 
+<button *ngIf="isMenuScrolled" (click)="scrollToTop()" class="scrolling z-50">
+  <img [src]="iconArrowUp" alt="Scroll to Top" class="w-6 h-6 m-auto arrow">
+</button>
+
+
 <aside
   id="default-sidebar"
   class="sm:hidden fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
@@ -49,3 +54,4 @@
     </ul>
   </div>
 </aside>
+

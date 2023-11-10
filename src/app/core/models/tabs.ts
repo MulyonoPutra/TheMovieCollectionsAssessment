@@ -1,4 +1,4 @@
 export interface Tabs {
-  label: string;
-  classes: string;
+	label: string;
+	classes: string;
 }

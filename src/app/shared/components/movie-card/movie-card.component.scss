@@ -1,15 +1,15 @@
 .card-content {
-  @apply absolute bottom-0 left-0 p-6 bg-black rounded-lg bg-opacity-25 w-full inset-x-0 px-6 py-4;
+	@apply absolute bottom-0 left-0 p-6 bg-black rounded-lg bg-opacity-25 w-full inset-x-0 px-6 py-4;
 
-  .title {
-    @apply text-xl font-semibold text-white capitalize;
-  }
+	.title {
+		@apply text-xl font-semibold text-white capitalize;
+	}
 
-  .description {
-    @apply text-left tracking-tight text-xs font-medium text-white mt-2;
-  }
+	.description {
+		@apply text-left tracking-tight text-xs font-medium text-white mt-2;
+	}
 
-  .fav:hover {
-    filter: invert(27%) sepia(81%) saturate(7436%) hue-rotate(355deg) brightness(98%) contrast(120%);
-  }
+	.fav:hover {
+		filter: invert(27%) sepia(81%) saturate(7436%) hue-rotate(355deg) brightness(98%) contrast(120%);
+	}
 }
