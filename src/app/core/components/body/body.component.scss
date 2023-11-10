@@ -2,10 +2,11 @@
   @apply bg-cover bg-center bg-no-repeat p-6;
 
   .title {
-    @apply mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-100 md:text-5xl lg:text-6xl dark:text-white;
+    @apply py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12;
+
+    h1 {
+      @apply bg-gradient-to-r from-green-300 via-orange-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl
+    }
   }
 
-  .desc {
-    @apply mb-8 text-lg font-normal text-gray-200 lg:text-xl sm:px-16 xl:px-48;
-  }
 }

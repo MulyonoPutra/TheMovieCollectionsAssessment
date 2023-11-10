@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { MovieTrendingComponent } from './pages/movie-trending/movie-trending.component';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,7 +14,10 @@ import { MovieTrendingComponent } from './pages/movie-trending/movie-trending.co
   styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit, OnDestroy {
-  constructor(private readonly moviesService: MovieService) {}
+  constructor(
+    private readonly moviesService: MovieService,
+    private readonly sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.findAllTrendings();
@@ -31,10 +35,12 @@ export class MovieListComponent implements OnInit, OnDestroy {
     this.activeTabIndex = index;
   }
 
+
+
   findAllTrendings() {
     this.moviesService.findTrendingMovies('day').subscribe({
       next: (response) => {
-        console.log(response);
+        this.sharedService.sendPosterData(response)
       },
     });
   }

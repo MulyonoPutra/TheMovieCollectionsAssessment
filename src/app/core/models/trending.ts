@@ -1,6 +1,6 @@
-import { Movies } from "./movies";
+import { Movie } from "./movie";
 
-export interface Trending extends Movies {
+export interface Trending extends Movie {
   media_type: string;
   name?: string;
   original_name?: string;

@@ -3,6 +3,7 @@ import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpResponseEntity } from '../models/http-response-entity';
 import { Injectable } from '@angular/core';
+import { Movie } from '../models/movie';
 import { Trending } from '../models/trending';
 
 @Injectable({
@@ -22,11 +23,11 @@ export class MovieService {
       .pipe(map((response) => response.results));
   }
 
-  findPopularMovies(): Observable<Trending[]> {
+  findPopularMovies(): Observable<Movie[]> {
     const url = `${this.apiUrl}/movie/popular`;
     const params = { api_key: this.apiKey };
     return this.http
-      .get<HttpResponseEntity<Trending[]>>(url, { params })
+      .get<HttpResponseEntity<Movie[]>>(url, { params })
       .pipe(map((response) => response.results));
   }
 }
