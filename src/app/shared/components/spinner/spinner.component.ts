@@ -1,7 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 
 import { LoadingService } from '../../services/loading.service';
-import { StaticIcons } from '../../static/static-icons';
 
 @Component({
 	selector: 'app-spinner',

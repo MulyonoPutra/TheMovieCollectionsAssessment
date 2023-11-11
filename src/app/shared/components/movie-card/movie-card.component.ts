@@ -23,7 +23,7 @@ export class MovieCardComponent implements OnInit {
 	playIcon = StaticIcons.play;
 
 	ngOnInit(): void {
-		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${this.movies!.poster_path}`;
+		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${this.movies?.poster_path}`;
 	}
 
 	toggleFavorite(): void {
