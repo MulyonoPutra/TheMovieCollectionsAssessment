@@ -18,4 +18,22 @@ describe('FooterComponent', () => {
 	it('should create', () => {
 		expect(component).toBeTruthy();
 	});
+
+	it('should display menu items', () => {
+		fixture.detectChanges();
+		const menuItems = fixture.nativeElement.querySelectorAll('nav a');
+
+		expect(menuItems.length).toBe(component.menu.length);
+
+		menuItems.forEach((menuItem: any, index: number) => {
+			expect(menuItem?.textContent.trim()).toBe(component.menu[index]);
+		});
+	});
+
+	it('should display the copyright text', () => {
+		fixture.detectChanges();
+		const copyrightText = fixture.nativeElement.querySelector('.wrapper p');
+
+		expect(copyrightText?.textContent.trim()).toBe('© 2021 Admit One, Inc. All rights reserved.');
+	});
 });

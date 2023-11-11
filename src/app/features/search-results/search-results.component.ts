@@ -15,15 +15,15 @@ import { MovieService } from 'src/app/core/services/movie.service';
 	styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
+  query!: string;
+  movies: Movie[] = [];
+
 	constructor(
 		private readonly router: Router,
 		private readonly route: ActivatedRoute,
 		private readonly movieService: MovieService,
 	) {}
 
-	query!: string;
-
-	movies: Movie[] = [];
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((params) => {
 			this.query = params['query'];

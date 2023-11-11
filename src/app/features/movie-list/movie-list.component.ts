@@ -24,15 +24,20 @@ type TrackByItemType = Trending | Movie | TopRated;
 })
 export class MovieListComponent implements OnInit, OnDestroy {
 	private destroySubject = new Subject<void>();
-	trending!: Trending[];
-	topRated!: TopRated[];
-	movies!: Movie[];
-	activeTabIndex = 0;
+	protected movies!: Movie[];
+	protected trending!: Trending[];
+	protected topRated!: TopRated[];
 
-	tabs: Tabs[] = [
+	protected poster!: string;
+
+	protected activeTabIndex = 0;
+
+	protected tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
 		{ label: 'This Week', classes: 'inline-block p-4 rounded-t-lg' },
 	];
+
+	private defaultTime: string = 'day';
 
 	constructor(
 		private readonly moviesService: MovieService,
@@ -41,14 +46,14 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit(): void {
-		this.findAllTrendings();
+		this.findAllTrendings(this.defaultTime);
 		this.findPopular();
 		this.findTopRated();
 	}
 
-	findAllTrendings() {
+	private findAllTrendings(time: string): void {
 		this.moviesService
-			.findTrendingMovies('day')
+			.findTrendingMovies(time)
 			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: Trending[]) => {
@@ -58,7 +63,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	findPopular() {
+	private findPopular() {
 		this.moviesService
 			.findPopularMovies()
 			.pipe(takeUntil(this.destroySubject))
@@ -67,10 +72,12 @@ export class MovieListComponent implements OnInit, OnDestroy {
 					this.movies = response;
 					this.generateBackdropPath(response);
 				},
+				error: () => {},
+				complete: () => {},
 			});
 	}
 
-	findTopRated() {
+	private findTopRated() {
 		this.moviesService
 			.findTopRatedMovies()
 			.pipe(takeUntil(this.destroySubject))
@@ -81,21 +88,23 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	setActiveTab(index: number): void {
+	protected setActiveTab(index: number): void {
 		this.activeTabIndex = index;
+
+		const time = index === 0 ? 'day' : 'week';
+
+		this.findAllTrendings(time);
 	}
 
-	trackByFn(index: number, item: TrackByItemType): number {
+	protected trackByFn(index: number, item: TrackByItemType): number {
 		return item.id;
 	}
 
-	onNavigate(id: number): void {
+	protected onNavigate(id: number): void {
 		this.router.navigateByUrl('/movie-detail/' + id);
 	}
 
-	poster!: string;
-
-	generateBackdropPath(data: any): string {
+	protected generateBackdropPath(data: any): string {
 		const url: string = 'https://www.themoviedb.org/t/p';
 		const filter: string = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
 		let randomIndex = Math.floor(Math.random() * data.length);

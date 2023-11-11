@@ -43,7 +43,29 @@
       </ng-container>
     </div>
   </div>
-  <div *ngIf="activeTabIndex === 1">This Week</div>
+    <div *ngIf="activeTabIndex === 1" class="lg:max-w-full overflow-x-auto">
+    <div class="hidden lg:block md:hidden mb-2">
+      <div class="flex space-x-4">
+        <ng-container
+          *ngFor="let movie of trending; let i = index; trackBy: trackByFn"
+        >
+          <div>
+            <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="lg:hidden md:grid md:grid-cols-4">
+      <ng-container
+        *ngFor="let movie of trending; let i = index; trackBy: trackByFn"
+      >
+        <div>
+          <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </section>
 <!-- Trending Section -->
 

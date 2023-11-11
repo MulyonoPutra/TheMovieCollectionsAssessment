@@ -14,9 +14,9 @@ import { Router } from '@angular/router';
 	styleUrls: ['./favorite.component.scss'],
 })
 export class FavoriteComponent implements OnInit {
-	movies!: MovieDetail[];
+	protected movies!: MovieDetail[];
 
-	router = inject(Router);
+	private readonly router = inject(Router);
 
 	ngOnInit(): void {
 		this.getlocalStore();

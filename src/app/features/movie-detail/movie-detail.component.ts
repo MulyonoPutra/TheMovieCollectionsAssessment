@@ -26,7 +26,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	movieStore: MovieDetail[] = [];
 
 	constructor(
-		private route: ActivatedRoute,
+		private readonly route: ActivatedRoute,
 		private readonly movieService: MovieService,
 	) {}
 
