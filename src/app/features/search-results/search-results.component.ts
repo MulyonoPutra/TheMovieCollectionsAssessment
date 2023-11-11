@@ -15,8 +15,8 @@ import { MovieService } from 'src/app/core/services/movie.service';
 	styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
-  query!: string;
-  movies: Movie[] = [];
+	query!: string;
+	movies: Movie[] = [];
 
 	constructor(
 		private readonly router: Router,

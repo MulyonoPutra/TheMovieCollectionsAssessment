@@ -9,24 +9,24 @@ import { Component } from '@angular/core';
 	styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-    menu: string[] = ['About', 'Blog', 'Team', 'Pricing', 'Contact', 'Terms'];
+	menu: string[] = ['About', 'Blog', 'Team', 'Pricing', 'Contact', 'Terms'];
 
-    social = [
-      {
-        name: 'Facebook',
-        icons: '../../../../assets/icons/svg/icon-facebook.svg'
-      },
-      {
-        name: 'Instagram',
-        icons: '../../../../assets/icons/svg/icon-instagram.svg'
-      },
-      {
-        name: 'Twitter X',
-        icons: '../../../../assets/icons/svg/icon-twitter.svg'
-      },
-      {
-        name: 'Github',
-        icons: '../../../../assets/icons/svg/icon-github.svg'
-      },
-    ]
+	social = [
+		{
+			name: 'Facebook',
+			icons: '../../../../assets/icons/svg/icon-facebook.svg',
+		},
+		{
+			name: 'Instagram',
+			icons: '../../../../assets/icons/svg/icon-instagram.svg',
+		},
+		{
+			name: 'Twitter X',
+			icons: '../../../../assets/icons/svg/icon-twitter.svg',
+		},
+		{
+			name: 'Github',
+			icons: '../../../../assets/icons/svg/icon-github.svg',
+		},
+	];
 }
