@@ -1,10 +1,10 @@
 {
-  "app": {
-    "title": "Jutaan film, acara TV, dan orang untuk ditemukan. Jelajahi sekarang.",
-    "trending": "Sedang Tren",
-    "popular": "Populer",
-    "top": "Peringkat Teratas",
-    "favorite": "Favorit Saya",
-    "search": "Hasil Pencarian"
-  }
+	"app": {
+		"title": "Jutaan film, acara TV, dan orang untuk ditemukan. Jelajahi sekarang.",
+		"trending": "Sedang Tren",
+		"popular": "Populer",
+		"top": "Peringkat Teratas",
+		"favorite": "Favorit Saya",
+		"search": "Hasil Pencarian"
+	}
 }

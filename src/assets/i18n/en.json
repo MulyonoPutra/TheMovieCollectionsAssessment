@@ -1,10 +1,10 @@
 {
-  "app": {
-    "title": "Millions of movies, TV shows and people to discover. Explore now.",
-    "trending": "Trending",
-    "popular": "Popular",
-    "top": "Top Rated",
-    "favorite": "My favorite movies",
-    "search": "Search Results"
-  }
+	"app": {
+		"title": "Millions of movies, TV shows and people to discover. Explore now.",
+		"trending": "Trending",
+		"popular": "Popular",
+		"top": "Top Rated",
+		"favorite": "My favorite movies",
+		"search": "Search Results"
+	}
 }

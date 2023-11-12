@@ -19,7 +19,7 @@ type TrackByItemType = Trending | Movie | TopRated;
 @Component({
 	selector: 'app-movie-list',
 	standalone: true,
-  imports: [CommonModule, ComponentsModule, LazyLoadImageModule, HeroComponent, TranslateModule],
+	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, HeroComponent, TranslateModule],
 	templateUrl: './movie-list.component.html',
 	styleUrls: ['./movie-list.component.scss'],
 })

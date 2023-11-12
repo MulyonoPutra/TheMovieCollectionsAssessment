@@ -14,13 +14,19 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 @NgModule({
 	declarations: [AppComponent],
-	imports: [BrowserModule, AppRoutingModule, HttpClientModule, ComponentsModule, TranslateModule.forRoot({
-		loader: {
-			provide: TranslateLoader,
-			useFactory: HttpLoaderFactory,
-			deps: [HttpClient]
-		}
-	})],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HttpClientModule,
+		ComponentsModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient],
+			},
+		}),
+	],
 	providers: [
 		{
 			provide: HTTP_INTERCEPTORS,
@@ -31,4 +37,4 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 	bootstrap: [AppComponent],
 	exports: [],
 })
-export class AppModule { }
+export class AppModule {}

@@ -9,7 +9,7 @@ describe('MovieListComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-      imports: [MovieListComponent, TranslateModule],
+			imports: [MovieListComponent, TranslateModule],
 		});
 		fixture = TestBed.createComponent(MovieListComponent);
 		component = fixture.componentInstance;

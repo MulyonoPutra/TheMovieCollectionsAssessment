@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
 	selector: 'app-search-results',
 	standalone: true,
-  imports: [CommonModule, ComponentsModule, LazyLoadImageModule, TranslateModule],
+	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, TranslateModule],
 	templateUrl: './search-results.component.html',
 	styleUrls: ['./search-results.component.scss'],
 })
