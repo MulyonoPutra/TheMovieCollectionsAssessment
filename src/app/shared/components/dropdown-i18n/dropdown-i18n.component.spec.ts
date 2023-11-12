@@ -5,24 +5,24 @@ import { DropdownI18nComponent } from './dropdown-i18n.component';
 import { LanguageOptions } from 'src/app/core/models/language-options';
 
 describe('DropdownI18nComponent', () => {
-	let component: DropdownI18nComponent;
-	let fixture: ComponentFixture<DropdownI18nComponent>;
+  let component: DropdownI18nComponent;
+  let fixture: ComponentFixture<DropdownI18nComponent>;
   let translateService: TranslateService;
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			declarations: [DropdownI18nComponent],
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [DropdownI18nComponent],
       imports: [TranslateModule.forRoot()],
-		});
-		fixture = TestBed.createComponent(DropdownI18nComponent);
-		component = fixture.componentInstance;
+    });
+    fixture = TestBed.createComponent(DropdownI18nComponent);
+    component = fixture.componentInstance;
     translateService = TestBed.inject(TranslateService);
-		fixture.detectChanges();
-	});
+    fixture.detectChanges();
+  });
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
   it('should set default language and language options on initialization', () => {
     const defaultLang = 'in';

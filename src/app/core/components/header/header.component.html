@@ -1,5 +1,5 @@
 <nav class="bg-[#00111C]">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <div class="nav-wrapper">
     <div class="hidden md:block lg:block">
       <app-logo></app-logo>
     </div>
@@ -7,9 +7,9 @@
     <div class="sm:hidden">
       <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"
-        class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        class="sidebar-button">
         <span class="sr-only">Open sidebar</span>
-        <img [src]="menuIcons" alt="Open Sidebar" class="h-6 w-6">
+        <img [src]="menuIcons" alt="Open Sidebar" class="h-6 w-6" />
       </button>
     </div>
 
@@ -21,14 +21,9 @@
         <app-dropdown-profile></app-dropdown-profile>
       </div> -->
       <div>
-        <button (click)="favoritePage()" data-tooltip-target="tooltip-default" type="button">
+        <button (click)="favoritePage()" type="button">
           <img [src]="favIcon" class="fav flex items-center mt-2" alt="Favorite" />
         </button>
-        <div id="tooltip-default" role="tooltip"
-          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-          Your Favorite
-          <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
       </div>
       <div>
         <app-dropdown-i18n></app-dropdown-i18n>
@@ -39,14 +34,13 @@
 </nav>
 
 <aside id="default-sidebar"
-  class="sm:hidden fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+  class="sidebar transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidebar">
-  <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-    <ul class="space-y-2 font-medium" *ngFor="let item of menuSidebar; let i = index">
+  <div>
+    <ul *ngFor="let item of menuSidebar; let i = index">
       <li>
-        <a href="/"
-          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <span class="ml-3">{{item.title}}</span>
+        <a href="/">
+          <span>{{item.title}}</span>
         </a>
       </li>
     </ul>
