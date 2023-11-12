@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeroComponent } from './hero.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('HeroComponent', () => {
 	let component: HeroComponent;
@@ -9,7 +10,7 @@ describe('HeroComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [HeroComponent, LazyLoadImageModule],
+			imports: [HeroComponent, LazyLoadImageModule, TranslateModule],
 		});
 		fixture = TestBed.createComponent(HeroComponent);
 		component = fixture.componentInstance;

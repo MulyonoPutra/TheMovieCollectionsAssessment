@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Tabs } from 'src/app/core/models/tabs';
 import { TopRated } from 'src/app/core/models/top-rated';
+import { TranslateModule } from '@ngx-translate/core';
 import { Trending } from 'src/app/core/models/trending';
 
 type TrackByItemType = Trending | Movie | TopRated;
@@ -18,7 +19,7 @@ type TrackByItemType = Trending | Movie | TopRated;
 @Component({
 	selector: 'app-movie-list',
 	standalone: true,
-	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, HeroComponent],
+  imports: [CommonModule, ComponentsModule, LazyLoadImageModule, HeroComponent, TranslateModule],
 	templateUrl: './movie-list.component.html',
 	styleUrls: ['./movie-list.component.scss'],
 })
@@ -60,6 +61,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
 					this.trending = response;
 					this.sharedService.sendPosterData(response);
 				},
+				error: () => {},
+				complete: () => {},
 			});
 	}
 
@@ -85,6 +88,8 @@ export class MovieListComponent implements OnInit, OnDestroy {
 				next: (response: TopRated[]) => {
 					this.topRated = response;
 				},
+				error: () => {},
+				complete: () => {},
 			});
 	}
 
@@ -104,7 +109,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.router.navigateByUrl('/movie-detail/' + id);
 	}
 
-	protected generateBackdropPath(data: any): string {
+	generateBackdropPath(data: any): string {
 		const url: string = 'https://www.themoviedb.org/t/p';
 		const filter: string = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
 		let randomIndex = Math.floor(Math.random() * data.length);

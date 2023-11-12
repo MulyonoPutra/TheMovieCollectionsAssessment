@@ -1,0 +1,23 @@
+button {
+  @apply inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer;
+}
+
+img {
+  @apply w-5 h-5 mr-2 rounded-full;
+}
+
+.dropdown {
+  @apply absolute mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow ;
+
+  ul {
+    @apply py-2 font-medium;
+
+    a {
+      @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100;
+
+      div {
+        @apply inline-flex items-center;
+      }
+    }
+  }
+}

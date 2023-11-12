@@ -6,11 +6,12 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Movie } from 'src/app/core/models/movie';
 import { MovieService } from 'src/app/core/services/movie.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-search-results',
 	standalone: true,
-	imports: [CommonModule, ComponentsModule, LazyLoadImageModule],
+  imports: [CommonModule, ComponentsModule, LazyLoadImageModule, TranslateModule],
 	templateUrl: './search-results.component.html',
 	styleUrls: ['./search-results.component.scss'],
 })

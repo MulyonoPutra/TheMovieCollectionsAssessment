@@ -5,11 +5,12 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MovieDetail } from 'src/app/core/models/movie-detail';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-favorite',
 	standalone: true,
-	imports: [CommonModule, ComponentsModule, LazyLoadImageModule],
+	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, TranslateModule],
 	templateUrl: './favorite.component.html',
 	styleUrls: ['./favorite.component.scss'],
 })

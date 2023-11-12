@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieListComponent } from './movie-list.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('MovieListComponent', () => {
 	let component: MovieListComponent;
@@ -8,7 +9,7 @@ describe('MovieListComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [MovieListComponent],
+      imports: [MovieListComponent, TranslateModule],
 		});
 		fixture = TestBed.createComponent(MovieListComponent);
 		component = fixture.componentInstance;
