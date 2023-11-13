@@ -22,8 +22,8 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	imageUrls!: string;
 	poster!: string;
 	isFavorite: boolean = false;
-	favIcon = StaticIcons.fav;
-	favRedIcon = StaticIcons.favRed;
+	favIcon =     StaticIcons.fav;
+	favRedIcon =  StaticIcons.favRed;
 	movieStore: MovieDetail[] = [];
 
 	constructor(
@@ -39,7 +39,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
 	}
 
-	private findById(): void {
+	findById(): void {
 		const id = this.route.snapshot.paramMap.get('id')!;
 		this.movieService
 			.findMovieById(id)

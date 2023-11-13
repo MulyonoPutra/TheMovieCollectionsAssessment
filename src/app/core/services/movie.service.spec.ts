@@ -1,8 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { MovieService } from './movie.service';
-import { Trending } from '../models/trending';
+import { TestBed } from '@angular/core/testing';
 
 describe('MovieService', () => {
 	let service: MovieService;

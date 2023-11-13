@@ -33,7 +33,7 @@ type TrackByItemType = Trending | Movie | TopRated;
 	styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit, OnDestroy {
-	destroySubject = new Subject<void>();
+	destroy$ = new Subject<void>();
 	movies!: Movie[];
 	trending!: Trending[];
 	topRated!: TopRated[];
@@ -41,21 +41,20 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	poster!: string;
 
 	menuId!: number;
-  page: number = 1;
-  throttle: number = 0;
-  distance: number = 2;
-  activeTabIndex: number = 0;
+	page: number = 1;
+	throttle: number = 0;
+	distance: number = 2;
+	activeTabIndex: number = 0;
 
-  isLoading: boolean = false;
+	isLoading: boolean = false;
 	isMediumSize: boolean = false;
 
-  defaultTime: string = 'day';
+	defaultTime: string = 'day';
 
 	tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
 		{ label: 'This Week', classes: 'inline-block p-4 rounded-t-lg' },
 	];
-
 
 	constructor(
 		private readonly moviesService: MovieService,
@@ -74,7 +73,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	findAllTrendings(time: string): void {
 		this.moviesService
 			.findTrendingMovies(time)
-			.pipe(takeUntil(this.destroySubject))
+			.pipe(takeUntil(this.destroy$))
 			.subscribe({
 				next: (response: Trending[]) => {
 					this.trending = response;
@@ -89,7 +88,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	findPopular(): void {
 		this.moviesService
 			.findPopularMovies(++this.page)
-			.pipe(takeUntil(this.destroySubject))
+			.pipe(takeUntil(this.destroy$))
 			.subscribe({
 				next: (response: Movie[]) => {
 					this.movies = response;
@@ -104,7 +103,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	findTopRated(): void {
 		this.moviesService
 			.findTopRatedMovies()
-			.pipe(takeUntil(this.destroySubject))
+			.pipe(takeUntil(this.destroy$))
 			.subscribe({
 				next: (response: TopRated[]) => {
 					this.topRated = response;
@@ -153,17 +152,17 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.mediumScreenSize();
 	}
 
-	mediumScreenSize() {
+	mediumScreenSize(): void {
 		const width = window.innerWidth;
 		this.isMediumSize = width >= 600 && width <= 1024;
 	}
 
-	toggleLoading() {
+	toggleLoading(): void {
 		this.isLoading = !this.isLoading;
 	}
 
 	ngOnDestroy(): void {
-		this.destroySubject.next();
-		this.destroySubject.complete();
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 }

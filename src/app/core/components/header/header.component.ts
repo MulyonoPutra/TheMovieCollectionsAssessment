@@ -35,7 +35,6 @@ export class HeaderComponent {
 		}
 	}
 
-	// Send Menu Item ID to the Movie List Component
 	onClickMenu(id: number): void {
 		this.sharedService.sendMenuItemId(id);
 	}
