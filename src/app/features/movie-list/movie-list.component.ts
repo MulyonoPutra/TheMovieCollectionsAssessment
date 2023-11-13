@@ -98,9 +98,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
 	protected setActiveTab(index: number): void {
 		this.activeTabIndex = index;
-
 		const time = index === 0 ? 'day' : 'week';
-
 		this.findAllTrendings(time);
 	}
 
