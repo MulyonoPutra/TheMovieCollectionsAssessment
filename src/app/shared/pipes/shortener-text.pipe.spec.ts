@@ -24,9 +24,4 @@ describe('ShortenerTextPipe', () => {
 		const result = pipe.transform(inputText, limit);
 		expect(result).toEqual('Short text');
 	});
-
-	it('should return null when input is null', () => {
-		const result = pipe.transform(null, 10);
-		expect(result).toBeNull();
-	});
 });

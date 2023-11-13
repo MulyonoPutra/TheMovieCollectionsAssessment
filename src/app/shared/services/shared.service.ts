@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Movie } from 'src/app/core/models/movie';
 import { Subject } from 'rxjs';
 
 @Injectable({

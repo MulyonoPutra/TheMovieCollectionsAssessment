@@ -10,7 +10,6 @@ describe('FavoriteComponent', () => {
 	let component: FavoriteComponent;
 	let fixture: ComponentFixture<FavoriteComponent>;
 	let router: Router;
-	let localStoreService: LocalStoreService;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -32,7 +31,6 @@ describe('FavoriteComponent', () => {
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 		router = TestBed.inject(Router);
-		localStoreService = TestBed.inject(LocalStoreService);
 	});
 
 	it('should create', () => {

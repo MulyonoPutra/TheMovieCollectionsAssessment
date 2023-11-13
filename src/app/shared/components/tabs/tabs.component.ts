@@ -9,7 +9,7 @@ import { Tabs } from 'src/app/core/models/tabs';
 })
 export class TabsComponent {
 	@Input() tabs: Tabs[] = [];
-	@Input() activeTabIndex: number = 0;
+	@Input() activeTabIndex = 0;
 	@Output() clicked = new EventEmitter<number>();
 
 	setActiveTab(index: number): void {

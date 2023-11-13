@@ -21,9 +21,9 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	movie!: MovieDetail;
 	imageUrls!: string;
 	poster!: string;
-	isFavorite: boolean = false;
-	favIcon =     StaticIcons.fav;
-	favRedIcon =  StaticIcons.favRed;
+	isFavorite = false;
+	favIcon = StaticIcons.fav;
+	favRedIcon = StaticIcons.favRed;
 	movieStore: MovieDetail[] = [];
 
 	constructor(
@@ -40,18 +40,20 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	}
 
 	findById(): void {
-		const id = this.route.snapshot.paramMap.get('id')!;
-		this.movieService
-			.findMovieById(id)
-			.pipe(takeUntil(this.destroy$))
-			.subscribe({
-				next: (response: MovieDetail) => {
-					this.movie = response;
-					this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
-					this.movie.isFavorited = this.isFavorite;
-					this.setImageUrl(response);
-				},
-			});
+		const id = this.route.snapshot.paramMap.get('id');
+		if (id) {
+			this.movieService
+				.findMovieById(id)
+				.pipe(takeUntil(this.destroy$))
+				.subscribe({
+					next: (response: MovieDetail) => {
+						this.movie = response;
+						this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
+						this.movie.isFavorited = this.isFavorite;
+						this.setImageUrl(response);
+					},
+				});
+		}
 	}
 
 	toggleFavorite(): void {
@@ -71,7 +73,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	setImageUrl(response: MovieDetail) {
 		const filter = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
 		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/${filter}/${response?.backdrop_path}`;
-		this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${response!.poster_path}`;
+		this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${response.poster_path}`;
 	}
 
 	ngOnDestroy(): void {

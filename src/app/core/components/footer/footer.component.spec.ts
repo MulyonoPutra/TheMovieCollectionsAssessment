@@ -25,8 +25,12 @@ describe('FooterComponent', () => {
 
 		expect(menuItems.length).toBe(component.menu.length);
 
-		menuItems.forEach((menuItem: any, index: number) => {
-			expect(menuItem?.textContent.trim()).toBe(component.menu[index]);
+		menuItems.forEach((menuItem: HTMLElement, index: number) => {
+			const textContent = menuItem.textContent;
+			expect(textContent).toBeDefined();
+			if (textContent) {
+				expect(textContent.trim()).toBe(component.menu[index]);
+			}
 		});
 	});
 

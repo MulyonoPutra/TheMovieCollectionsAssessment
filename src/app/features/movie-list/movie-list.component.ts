@@ -41,15 +41,15 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	poster!: string;
 
 	menuId!: number;
-	page: number = 1;
-	throttle: number = 0;
-	distance: number = 2;
-	activeTabIndex: number = 0;
+	page = 1;
+	throttle = 0;
+	distance = 2;
+	activeTabIndex = 0;
 
-	isLoading: boolean = false;
-	isMediumSize: boolean = false;
+	isLoading = false;
+	isMediumSize = false;
 
-	defaultTime: string = 'day';
+	defaultTime = 'day';
 
 	tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
@@ -81,7 +81,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
 				error: (error: HttpErrorResponse) => {
 					console.error(error);
 				},
-				complete: () => {},
 			});
 	}
 
@@ -112,7 +111,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
 				error: (error: HttpErrorResponse) => {
 					console.error(error);
 				},
-				complete: () => {},
 			});
 	}
 
@@ -130,11 +128,11 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.router.navigateByUrl('/movie-detail/' + id);
 	}
 
-	generateBackdropPath(data: any): string {
-		const url: string = 'https://www.themoviedb.org/t/p';
-		const filter: string = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
-		let randomIndex = Math.floor(Math.random() * data.length);
-		let backdrop = data[randomIndex].backdrop_path;
+	generateBackdropPath(data: TopRated[]): string {
+		const url = 'https://www.themoviedb.org/t/p';
+		const filter = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
+		const randomIndex = Math.floor(Math.random() * data.length);
+		const backdrop = data[randomIndex].backdrop_path;
 		this.poster = `${url}/${filter}/${backdrop}`;
 		return this.poster;
 	}

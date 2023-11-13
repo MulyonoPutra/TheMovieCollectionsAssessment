@@ -12,7 +12,7 @@ import { langOptions } from '../../utils/lang-options';
 export class DropdownI18nComponent implements OnInit {
 	language!: LanguageOptions;
 	languageOptions: LanguageOptions[] = langOptions;
-	isShowDropdown: boolean = false;
+	isShowDropdown = false;
 
 	constructor(public translate: TranslateService) {}
 
@@ -27,16 +27,17 @@ export class DropdownI18nComponent implements OnInit {
 	setDefaultLanguage(): void {
 		this.translate.addLangs(['en', 'in']);
 		this.translate.setDefaultLang('in');
-		const browserLang = this.translate.getBrowserLang()!;
-		this.translate.use(browserLang.match(/en|in/) ? browserLang : 'in');
-
-		if (this.languageOptions.length > 0) {
-			const [defaultLang] = this.languageOptions;
-			this.language = {
-				name: defaultLang.name,
-				code: defaultLang.code,
-				flagUrl: defaultLang.flagUrl,
-			};
+		const browserLang = this.translate.getBrowserLang();
+		if (browserLang) {
+			this.translate.use(browserLang.match(/en|in/) ? browserLang : 'in');
+			if (this.languageOptions.length > 0) {
+				const [defaultLang] = this.languageOptions;
+				this.language = {
+					name: defaultLang.name,
+					code: defaultLang.code,
+					flagUrl: defaultLang.flagUrl,
+				};
+			}
 		}
 	}
 

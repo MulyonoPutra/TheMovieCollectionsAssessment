@@ -8,17 +8,17 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 export class HttpRequestInterceptor implements HttpInterceptor {
 	constructor(private readonly _loading: LoadingService) {}
 
-	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		this._loading.show();
 
 		return next.handle(req).pipe(
 			tap(
-				(event: HttpEvent<any>) => {
+				(event: HttpEvent<unknown>) => {
 					if (event instanceof HttpResponse) {
 						this._loading.hide();
 					}
 				},
-				(error) => {
+				() => {
 					this._loading.hide();
 				},
 			),

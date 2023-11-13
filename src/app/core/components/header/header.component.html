@@ -41,9 +41,9 @@
         </a>
       </li>
       <li *ngFor="let item of menuSidebar; let i = index">
-        <a (click)="onClickMenu(i)">
+        <button type="button" (click)="onClickMenu(i)" (keyup.enter)="onClickMenu(i)">
           <span>{{item.title}}</span>
-        </a>
+        </button>
       </li>
     </ul>
   </div>

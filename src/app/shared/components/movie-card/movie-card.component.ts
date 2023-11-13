@@ -16,11 +16,11 @@ export class MovieCardComponent implements OnInit {
 	@Output() clicked = new EventEmitter<number>();
 
 	imageUrls!: string;
-	isFavorite: boolean = false;
+	isFavorite = false;
 
-	favIcon: string = StaticIcons.fav;
-  favRedIcon: string = StaticIcons.favRed;
-  playIcon: string = StaticIcons.play;
+	favIcon = StaticIcons.fav;
+	favRedIcon = StaticIcons.favRed;
+	playIcon = StaticIcons.play;
 
 	ngOnInit(): void {
 		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${this.movies?.poster_path}`;
@@ -32,5 +32,11 @@ export class MovieCardComponent implements OnInit {
 
 	onNavigate(): void {
 		this.clicked.emit();
+	}
+
+	onEnterKey(event: Event | KeyboardEvent): void {
+		if (event instanceof KeyboardEvent && event.key === 'Enter') {
+			this.onNavigate();
+		}
 	}
 }

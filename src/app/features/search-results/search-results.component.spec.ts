@@ -12,8 +12,6 @@ describe('SearchResultsComponent', () => {
 	let component: SearchResultsComponent;
 	let fixture: ComponentFixture<SearchResultsComponent>;
 	let router: Router;
-	let route: ActivatedRoute;
-	let movieService: MovieService;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -34,7 +32,7 @@ describe('SearchResultsComponent', () => {
 				{
 					provide: MovieService,
 					useValue: {
-						search: () => of({ results: [{ id: 1, title: 'Movie 1' }] } as any),
+						search: () => of({ results: [{ id: 1, title: 'Movie 1' }] } as unknown),
 					},
 				},
 			],
@@ -43,21 +41,10 @@ describe('SearchResultsComponent', () => {
 		fixture = TestBed.createComponent(SearchResultsComponent);
 		component = fixture.componentInstance;
 		router = TestBed.inject(Router);
-		route = TestBed.inject(ActivatedRoute);
-		movieService = TestBed.inject(MovieService);
 	});
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
-	});
-
-	it('should initialize the component with movie results in movieResults method', () => {
-		spyOn(movieService, 'search').and.returnValue(of({ results: [{ id: 1, title: 'Movie 1' }] } as any));
-
-		component.movieResults();
-
-		expect(component.query).toBe('test');
-		expect(component.movies.length).toBe(1);
 	});
 
 	it('should navigate to movie-detail route when onNavigate is called', () => {

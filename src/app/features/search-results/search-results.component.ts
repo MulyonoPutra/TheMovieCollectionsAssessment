@@ -9,44 +9,44 @@ import { MovieService } from 'src/app/core/services/movie.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-search-results',
-  standalone: true,
-  imports: [CommonModule, ComponentsModule, LazyLoadImageModule, TranslateModule],
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss'],
+	selector: 'app-search-results',
+	standalone: true,
+	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, TranslateModule],
+	templateUrl: './search-results.component.html',
+	styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
-  query!: string;
-  movies: Movie[] = [];
+	query!: string;
+	movies: Movie[] = [];
 
-  constructor(
-    private readonly router: Router,
-    private readonly route: ActivatedRoute,
-    private readonly movieService: MovieService,
-  ) { }
+	constructor(
+		private readonly router: Router,
+		private readonly route: ActivatedRoute,
+		private readonly movieService: MovieService,
+	) {}
 
-  ngOnInit(): void {
-    this.findMovie();
-  }
+	ngOnInit(): void {
+		this.findMovie();
+	}
 
-  findMovie(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.query = params['query'];
-      if (this.query) {
-        this.movieService.search(this.query).subscribe({
-          next: (data) => {
-            this.movies = data.results;
-          },
-        });
-      }
-    });
-  }
+	findMovie(): void {
+		this.route.queryParams.subscribe((params) => {
+			this.query = params['query'];
+			if (this.query) {
+				this.movieService.search(this.query).subscribe({
+					next: (data) => {
+						this.movies = data.results;
+					},
+				});
+			}
+		});
+	}
 
-  trackById(index: number, item: Movie): number {
-    return item.id;
-  }
+	trackById(index: number, item: Movie): number {
+		return item.id;
+	}
 
-  onNavigate(id: number): void {
-    this.router.navigateByUrl('/movie-detail/' + id);
-  }
+	onNavigate(id: number): void {
+		this.router.navigateByUrl('/movie-detail/' + id);
+	}
 }

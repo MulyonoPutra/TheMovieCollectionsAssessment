@@ -1,5 +1,5 @@
 <ul>
   <li *ngFor="let tab of tabs; let i = index">
-    <a [class]="tab.classes + (i === activeTabIndex ? ' active rounded-lg font-bold text-transparent text-sm bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600' : ' hover:text-gray-600 hover:bg-gray-50')" (click)="setActiveTab(i)">{{ tab.label }}</a>
+    <button type="button" [class]="tab.classes + (i === activeTabIndex ? ' active rounded-lg font-bold text-transparent text-sm bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600' : ' hover:text-gray-600 hover:bg-gray-50')" (click)="setActiveTab(i)">{{ tab.label }}</button>
   </li>
 </ul>

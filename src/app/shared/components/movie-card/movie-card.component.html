@@ -1,20 +1,20 @@
 <!-- Desktop Version -->
-<div (click)="onNavigate()"
+<div *ngIf="movies" tabindex="0" role="button" (click)="onNavigate()" (keyup.enter)="onEnterKey($event)" (keydown.enter)="onEnterKey($event)" tabIndex=0
   class="web-card-wrapper group">
   <div class="relative overflow-hidden">
-    <img class="poster" [lazyLoad]="imageUrls" />
+    <img class="poster" [lazyLoad]="imageUrls" alt="Image Poster" />
 
     <div
       class="detail-desc -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
       <div class="card-content absolute top-0">
         <h2 class="title">
-          {{ movies?.title | shortenerText : 15 }}
+          {{ movies.title | shortenerText : 15 }}
         </h2>
         <p class="description">
-          {{ movies?.overview | shortenerText : 200 }}
+          {{ movies.overview | shortenerText : 200 }}
         </p>
         <p class="date">
-          {{ movies?.release_date }}
+          {{ movies.release_date }}
         </p>
       </div>
     </div>
@@ -23,8 +23,8 @@
 <!-- Desktop Version -->
 
 <!-- Mobile Version -->
-<div class="sm:hidden py-2">
-  <div (click)="onNavigate()">
+<div *ngIf="movies" class="sm:hidden py-2">
+  <div tabindex="0" role="button" (click)="onNavigate()" (keyup.enter)="onEnterKey($event)" (keydown.enter)="onEnterKey($event)" tabIndex=0>
     <div class="mobile-card-wrapper">
       <div class="hover-transition">
         <div class="card-gradient"></div>
@@ -34,7 +34,7 @@
             <div class="space-y-6">
               <div class="flex flex-col space-y-2 inner">
                 <h3 class="text-2xl font-bold text-white">
-                  {{ movies?.title }}
+                  {{ movies.title }}
                 </h3>
               </div>
               <div *ngIf="movies" class="flex flex-row justify-between datos">
@@ -55,13 +55,13 @@
                 <div class="flex flex-col"></div>
                 <div class="text-xs text-gray-400 mb-2">Overview:</div>
                 <p class="text-xs text-gray-100 mb-6">
-                  {{ movies?.overview | shortenerText : 100 }}
+                  {{ movies.overview | shortenerText : 100 }}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <img class="absolute inset-0 transform w-full -translate-y-4" [src]="imageUrls" />
+        <img class="absolute inset-0 transform w-full -translate-y-4" [src]="imageUrls" alt="Image Poster" />
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div>
   <button type="button" (click)="openDropdown()">
-    <img [src]="language.flagUrl" alt="language" class="w-10 h-10 mr-2 rounded-full hover:border" />
+    <img [src]="language.flagUrl" class="w-10 h-10 mr-2 rounded-full hover:border" alt="flag language" />
   </button>
 
   <div *ngIf="isShowDropdown" class="dropdown">
@@ -8,7 +8,7 @@
       <li *ngFor="let language of languageOptions">
         <a href="javascript: void(0);" (click)="onLanguageChange(language)">
           <div>
-            <img [src]="language.flagUrl">
+            <img [src]="language.flagUrl" alt="flag">
             {{ language.name }}
           </div>
         </a>
