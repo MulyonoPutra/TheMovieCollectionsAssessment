@@ -24,7 +24,7 @@ type TrackByItemType = Trending | Movie | TopRated;
 	styleUrls: ['./movie-list.component.scss'],
 })
 export class MovieListComponent implements OnInit, OnDestroy {
-	private destroySubject = new Subject<void>();
+	destroySubject = new Subject<void>();
 	movies!: Movie[];
 	trending!: Trending[];
 	topRated!: TopRated[];
@@ -40,7 +40,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		{ label: 'This Week', classes: 'inline-block p-4 rounded-t-lg' },
 	];
 
-	private defaultTime: string = 'day';
+	defaultTime: string = 'day';
 
 	constructor(
 		private readonly moviesService: MovieService,

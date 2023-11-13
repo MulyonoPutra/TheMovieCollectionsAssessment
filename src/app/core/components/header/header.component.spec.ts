@@ -5,6 +5,7 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { HeaderComponent } from './header.component';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('HeaderComponent', () => {
 	let component: HeaderComponent;
@@ -12,7 +13,7 @@ describe('HeaderComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [HeaderComponent, CommonModule, ComponentsModule, RouterTestingModule],
+      imports: [HeaderComponent, CommonModule, ComponentsModule, RouterTestingModule, TranslateModule.forRoot()],
 			providers: [],
 		});
 		fixture = TestBed.createComponent(HeaderComponent);
