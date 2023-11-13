@@ -26,17 +26,21 @@ export class SearchResultsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.route.queryParams.subscribe((params) => {
-			this.query = params['query'];
-			if (this.query) {
-				this.movieService.search(this.query).subscribe({
-					next: (data) => {
-						this.movies = data.results;
-					},
-				});
-			}
-		});
+		this.movieResults();
 	}
+
+  movieResults(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.query = params['query'];
+      if (this.query) {
+        this.movieService.search(this.query).subscribe({
+          next: (data) => {
+            this.movies = data.results;
+          },
+        });
+      }
+    });
+  }
 
 	trackById(index: number, item: Movie): number {
 		return item.id;

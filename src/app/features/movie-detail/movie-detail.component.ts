@@ -49,10 +49,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: MovieDetail) => {
 					this.movie = response;
-					// Set isFavorite based on whether the movie is in the array
 					this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
-
-					// Update the movie's isFavorited property
 					this.movie.isFavorited = this.isFavorite;
 					this.setImageUrl(response);
 				},
@@ -60,7 +57,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	}
 
 	toggleFavorite(): void {
-		// Toggle the isFavorite flag
 		this.isFavorite = !this.isFavorite;
 
 		const index = this.movieStore.findIndex((movie) => movie.id === this.movie?.id);
