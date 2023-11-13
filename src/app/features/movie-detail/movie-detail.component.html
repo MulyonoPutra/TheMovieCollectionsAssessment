@@ -1,64 +1,41 @@
 <section>
   <div *ngIf="movie" class="wrapper" [lazyLoad]="imageUrls" alt="image description">
     <div>
-      <button class="absolute top-2 right-2 cursor-pointer" (click)="toggleFavorite()">
+      <button class="fav-wrap" (click)="toggleFavorite()">
         <img *ngIf="!isFavorite" [src]="favIcon" alt="Fav White" class="h-10 w-10" />
-        <img *ngIf="isFavorite" [src]="favRedIcon" alt="Fav Red" class="fav h-10 w-10" />
+        <img *ngIf="isFavorite" [src]="favRedIcon" alt="Fav Red" class="h-10 w-10" />
       </button>
     </div>
     <div class="title">
       <h1>
         {{ movie.title }}
       </h1>
-      <h3 class="text-gray-200 text-sm italic">{{ movie.tagline }}</h3>
-      <div class="flex flex-col space-y-1 py-4">
-        <h3 class="font-bold text-xl text-white">Overview</h3>
-        <div>
-          <p
-            class="bg-gradient-to-r from-green-300 via-gray-200 to-yellow-600 bg-clip-text text-transparent font-bold mx-auto max-w-full text-left">
-            {{ movie!.overview }}</p>
-        </div>
+      <h3 class="tagline">{{ movie.tagline }}</h3>
+      <div class="overview">
+        <h3>Overview</h3>
+        <p> {{ movie!.overview }} </p>
       </div>
-      <div class="flex space-x-3 lg:space-x-10">
-        <div>
-          <div class="flex flex-col space-y-0">
-            <h3 class="font-bold text-xl text-white">Release Date</h3>
-            <h4 class="font-medium text-white">{{ movie.release_date }}</h4>
-          </div>
+      <div class="description">
+        <div class="flex-column">
+          <h3>Release Date</h3>
+          <h4>{{ movie.release_date }}</h4>
         </div>
-        <div>
-          <div class="flex flex-col space-y-0">
-            <h3 class="font-bold text-xl text-white">Runtime</h3>
-            <h4 class="font-medium text-white">{{ movie.runtime }} min</h4>
-          </div>
+        <div class="flex-column">
+          <h3>Runtime</h3>
+          <h4>{{ movie.runtime }} min</h4>
         </div>
-        <div>
-          <div class="flex flex-col space-y-0">
-            <h3 class="font-bold text-xl text-white">Genre</h3>
-            <div *ngFor="let item of movie.genres">
-              <span class="font-medium text-white">{{ item.name }} </span>
-            </div>
+        <div class="flex-column">
+          <h3>Genre</h3>
+          <div *ngFor="let item of movie.genres">
+            <span class="font-medium text-white">{{ item.name }} </span>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="absolute bottom-[50px] left-[100px] cursor-pointer hidden lg:block w-full lg:w-[250px] h-fit group border-4 border-gray-200 rounded-lg">
+      class="poster-wrap">
       <div class="relative overflow-hidden">
-        <img class="h-[300px] lg:h-full w-full object-cover rounded-lg" [lazyLoad]="poster" />
-
-        <div
-          class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0">
-          <div class="card-content absolute top-0">
-
-            <h2 class="title">
-              {{ movie.title }}
-            </h2>
-            <p class="description">
-              {{ movie.overview }}
-            </p>
-          </div>
-        </div>
+        <img class="poster" [lazyLoad]="poster" />
       </div>
     </div>
   </div>
