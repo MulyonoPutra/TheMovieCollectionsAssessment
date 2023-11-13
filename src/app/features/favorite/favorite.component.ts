@@ -16,7 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 	styleUrls: ['./favorite.component.scss'],
 })
 export class FavoriteComponent implements OnInit {
-	protected movies!: MovieDetail[];
+	public movies!: MovieDetail[];
 
 	private readonly router = inject(Router);
 	private readonly localStore = inject(LocalStoreService);

@@ -68,7 +68,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 		this.localStorageService.setItem('MOVIES', this.movieStore);
 	}
 
-	private setImageUrl(response: MovieDetail) {
+	setImageUrl(response: MovieDetail) {
 		const filter = 'w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)';
 		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/${filter}/${response?.backdrop_path}`;
 		this.poster = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${response!.poster_path}`;

@@ -7,7 +7,7 @@ import { SpokenLanguage } from './spoken-language';
 export interface MovieDetail {
 	adult: boolean;
 	backdrop_path: string;
-	belongs_to_collection: BelongsToCollection;
+	belongs_to_collection?: BelongsToCollection;
 	budget: number;
 	genres: Genre[];
 	homepage: string;
