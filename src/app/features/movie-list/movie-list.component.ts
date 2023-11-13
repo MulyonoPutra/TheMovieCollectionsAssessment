@@ -43,6 +43,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	activeTabIndex = 0;
 
 	isMediumSize: boolean = false;
+  isLoading = false;
 
 	tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
@@ -95,7 +96,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
         error: (error: HttpErrorResponse) => {
           console.error(error);
         },
-				complete: () => {},
+        complete: () => this.toggleLoading(),
 			});
 	}
 
@@ -155,6 +156,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		const width = window.innerWidth;
 		this.isMediumSize = width >= 600 && width <= 1024;
 	}
+
+  toggleLoading() {
+    this.isLoading = !this.isLoading;
+  }
 
 	ngOnDestroy(): void {
 		this.destroySubject.next();

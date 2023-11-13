@@ -6,8 +6,7 @@
 
     <div class="sm:hidden">
       <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
-        type="button"
-        class="sidebar-button">
+        type="button" class="sidebar-button">
         <span class="sr-only">Open sidebar</span>
         <img [src]="menuIcons" alt="Open Sidebar" class="h-6 w-6" />
       </button>
@@ -32,12 +31,16 @@
   </div>
 </nav>
 
-<aside id="default-sidebar"
-  class="sidebar transition-transform -translate-x-full sm:translate-x-0"
+<aside id="default-sidebar" class="sidebar transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidebar">
   <div>
-    <ul *ngFor="let item of menuSidebar; let i = index">
+    <ul >
       <li>
+        <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+          <span>Home</span>
+        </a>
+      </li>
+      <li *ngFor="let item of menuSidebar; let i = index">
         <a (click)="onClickMenu(i)">
           <span>{{item.title}}</span>
         </a>
