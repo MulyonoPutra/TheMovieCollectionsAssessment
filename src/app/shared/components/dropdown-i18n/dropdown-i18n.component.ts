@@ -40,7 +40,7 @@ export class DropdownI18nComponent implements OnInit {
 		}
 	}
 
-  public onLanguageChange(language: LanguageOptions): void {
+	public onLanguageChange(language: LanguageOptions): void {
 		this.language = {
 			name: language.name,
 			code: language.code,
@@ -51,7 +51,7 @@ export class DropdownI18nComponent implements OnInit {
 		this.translate.use(language.code);
 	}
 
-  public openDropdown(): void {
+	public openDropdown(): void {
 		this.isShowDropdown = !this.isShowDropdown;
 	}
 }

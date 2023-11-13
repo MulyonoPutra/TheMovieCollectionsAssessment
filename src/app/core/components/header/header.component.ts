@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared/services/shared.service';
 import { SidebarMenu } from 'src/app/shared/static/static-sidebar-menu';
 import { StaticIcons } from 'src/app/shared/static/static-icons';
 
@@ -18,7 +19,11 @@ export class HeaderComponent {
 	favIcon = StaticIcons.favLg;
 	menuSidebar = SidebarMenu;
 	query: string = '';
-	router = inject(Router);
+
+	constructor(
+		private readonly sharedService: SharedService,
+		private readonly router: Router,
+	) {}
 
 	favoritePage(): void {
 		this.router.navigateByUrl('favorites');
@@ -28,5 +33,10 @@ export class HeaderComponent {
 		if (query?.trim()) {
 			this.router.navigate(['/search'], { queryParams: { query: query } });
 		}
+	}
+
+	// Send Menu Item ID to the Movie List Component
+	onClickMenu(id: number): void {
+		this.sharedService.sendMenuItemId(id);
 	}
 }

@@ -1,22 +1,61 @@
 <ng-container>
   <app-hero [poster]="poster"></app-hero>
 
-  <!-- Trending Section -->
+  <!-- Trending Section Start -->
   <section>
-    <div class="flex space-x-4 py-2">
-      <div class="flex items-center">
-        <h3 class="title" translate>
-          app.trending
-        </h3>
+    <!-- Desktop Version Start -->
+    <div class="hidden lg:block md:hidden">
+      <div class="flex space-x-4 py-2">
+        <div class="flex items-center">
+          <h3 class="title" translate>
+            app.trending
+          </h3>
+        </div>
+        <div>
+          <app-tabs [tabs]="tabs" [activeTabIndex]="activeTabIndex" (clicked)="setActiveTab($event)">
+          </app-tabs>
+        </div>
       </div>
-      <div>
-        <app-tabs [tabs]="tabs" [activeTabIndex]="activeTabIndex" (clicked)="setActiveTab($event)">
-        </app-tabs>
+      <div *ngIf="activeTabIndex === 0" class="lg:max-w-full overflow-x-auto">
+        <div class="hidden lg:block md:hidden mb-2">
+          <div class="flex space-x-4">
+            <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
+              <div>
+                <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeTabIndex === 1" class="lg:max-w-full overflow-x-auto">
+        <div class="hidden lg:block md:hidden mb-2">
+          <div class="flex space-x-4">
+            <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
+              <div>
+                <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+              </div>
+            </ng-container>
+          </div>
+        </div>
       </div>
     </div>
-    <div *ngIf="activeTabIndex === 0" class="lg:max-w-full overflow-x-auto">
-      <div class="hidden lg:block md:hidden mb-2">
-        <div class="flex space-x-4">
+    <!-- Desktop Version End -->
+
+    <!-- Mobile Version Start -->
+    <div *ngIf="menuId === 0">
+      <div class="flex space-x-4 py-2 lg:hidden">
+        <div class="flex items-center">
+          <h3 class="title" translate>
+            app.trending
+          </h3>
+        </div>
+        <div>
+          <app-tabs [tabs]="tabs" [activeTabIndex]="activeTabIndex" (clicked)="setActiveTab($event)">
+          </app-tabs>
+        </div>
+      </div>
+      <div *ngIf="activeTabIndex === 0" class="lg:max-w-full overflow-x-auto">
+        <div class="lg:hidden md:grid md:grid-cols-4">
           <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
             <div>
               <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
@@ -24,18 +63,18 @@
           </ng-container>
         </div>
       </div>
-
-      <div class="lg:hidden md:grid md:grid-cols-4">
-        <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
-          <div>
-            <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+      <div *ngIf="activeTabIndex === 1" class="lg:max-w-full overflow-x-auto">
+        <div class="hidden lg:block md:hidden mb-2">
+          <div class="flex space-x-4">
+            <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
+              <div>
+                <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+              </div>
+            </ng-container>
           </div>
-        </ng-container>
-      </div>
-    </div>
-    <div *ngIf="activeTabIndex === 1" class="lg:max-w-full overflow-x-auto">
-      <div class="hidden lg:block md:hidden mb-2">
-        <div class="flex space-x-4">
+        </div>
+
+        <div class="lg:hidden md:grid md:grid-cols-4">
           <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
             <div>
               <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
@@ -43,38 +82,45 @@
           </ng-container>
         </div>
       </div>
-
-      <div class="lg:hidden md:grid md:grid-cols-4">
-        <ng-container *ngFor="let movie of trending; let i = index; trackBy: trackByFn">
-          <div>
-            <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
-          </div>
-        </ng-container>
-      </div>
     </div>
+    <!-- Mobile Version End -->
   </section>
-  <!-- Trending Section -->
+  <!-- Trending Section End -->
 
-  <!-- Popular Section -->
+  <!-- Popular Section Start -->
   <section>
-    <div class="flex space-x-4 py-2">
-      <div class="flex items-center">
-        <h3 class="title" translate>
-          app.popular
-        </h3>
-      </div>
-    </div>
-    <div class="lg:max-w-full overflow-x-auto">
-      <div class="hidden lg:block md:hidden mb-2">
-        <div class="flex space-x-4">
-          <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackByFn">
-            <div>
-              <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
-            </div>
-          </ng-container>
+    <!-- Desktop Version Start -->
+    <div class="hidden lg:block md:hidden">
+      <div class="flex space-x-4 py-2">
+        <div class="flex items-center">
+          <h3 class="title" translate>
+            app.popular
+          </h3>
         </div>
       </div>
+      <div class="lg:max-w-full overflow-x-auto">
+        <div class="hidden lg:block md:hidden mb-2">
+          <div class="flex space-x-4">
+            <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackByFn">
+              <div>
+                <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Desktop Version End -->
 
+    <!-- Mobile Version Start -->
+    <div *ngIf="menuId === 1">
+      <div class="flex space-x-4 py-2 lg:hidden">
+        <div class="flex items-center">
+          <h3 class="title" translate>
+            app.popular
+          </h3>
+        </div>
+      </div>
       <div class="lg:hidden md:grid md:grid-cols-4">
         <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackByFn">
           <div>
@@ -83,29 +129,41 @@
         </ng-container>
       </div>
     </div>
+    <!-- Mobile Version End -->
   </section>
-  <!-- Popular Section -->
+  <!-- Popular Section End -->
 
-  <!-- Top Rated Section -->
+  <!-- Top Rated Section Start -->
   <section>
-    <div class="flex space-x-4 py-2">
-      <div class="flex items-center">
-        <h3 class="title" translate>
-          app.top
-        </h3>
-      </div>
-    </div>
-    <div class="lg:max-w-full overflow-x-auto">
-      <div class="hidden lg:block md:hidden mb-2">
-        <div class="flex space-x-4">
-          <ng-container *ngFor="let movie of topRated; let i = index; trackBy: trackByFn">
-            <div>
-              <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
-            </div>
-          </ng-container>
+    <div class="hidden lg:block md:hidden">
+      <div class="flex space-x-4 py-2">
+        <div class="flex items-center">
+          <h3 class="title" translate>
+            app.top
+          </h3>
         </div>
       </div>
+      <div class="lg:max-w-full overflow-x-auto">
+        <div class="hidden lg:block md:hidden mb-2">
+          <div class="flex space-x-4">
+            <ng-container *ngFor="let movie of topRated; let i = index; trackBy: trackByFn">
+              <div>
+                <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div *ngIf="menuId === 2">
+      <div class="flex space-x-4 py-2">
+        <div class="flex items-center">
+          <h3 class="title" translate>
+            app.top
+          </h3>
+        </div>
+      </div>
       <div class="lg:hidden md:grid md:grid-cols-4">
         <ng-container *ngFor="let movie of topRated; let i = index; trackBy: trackByFn">
           <div>
@@ -115,6 +173,6 @@
       </div>
     </div>
   </section>
-  <!-- Top Rated Section -->
+  <!-- Top Rated Section End -->
 
 </ng-container>

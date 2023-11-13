@@ -10,7 +10,7 @@ describe('HeroComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [HeroComponent, LazyLoadImageModule, TranslateModule],
+			imports: [HeroComponent, LazyLoadImageModule, TranslateModule.forRoot()],
 		});
 		fixture = TestBed.createComponent(HeroComponent);
 		component = fixture.componentInstance;

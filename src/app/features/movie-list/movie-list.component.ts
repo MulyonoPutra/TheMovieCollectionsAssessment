@@ -30,7 +30,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	protected topRated!: TopRated[];
 
 	protected poster!: string;
-
+  menuId!: number;
 	protected activeTabIndex = 0;
 
 	protected tabs: Tabs[] = [
@@ -50,6 +50,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.findAllTrendings(this.defaultTime);
 		this.findPopular();
 		this.findTopRated();
+		this.onReceiveFromHeader();
 	}
 
 	private findAllTrendings(time: string): void {
@@ -59,7 +60,6 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: Trending[]) => {
 					this.trending = response;
-					this.sharedService.sendPosterData(response);
 				},
 				error: () => {},
 				complete: () => {},
@@ -116,6 +116,14 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		let backdrop = data[randomIndex].backdrop_path;
 		this.poster = `${url}/${filter}/${backdrop}`;
 		return this.poster;
+	}
+  
+	onReceiveFromHeader(): void {
+		this.sharedService.menuItem$.subscribe({
+			next: (id) => {
+				this.menuId = id;
+			},
+		});
 	}
 
 	ngOnDestroy(): void {

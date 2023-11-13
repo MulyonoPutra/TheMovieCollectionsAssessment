@@ -1,17 +1,14 @@
 export const SidebarMenu = [
 	{
+		id: 1,
 		title: 'Trending',
 	},
 	{
+		id: 2,
 		title: 'Popular',
 	},
 	{
-		title: 'Free to Watch',
-	},
-	{
+		id: 3,
 		title: 'Top Rated',
-	},
-	{
-		title: 'Upcoming',
 	},
 ];

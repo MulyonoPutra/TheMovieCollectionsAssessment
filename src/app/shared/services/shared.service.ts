@@ -6,14 +6,10 @@ import { Subject } from 'rxjs';
 	providedIn: 'root',
 })
 export class SharedService {
-	/**
-	 * Send movie list data from MovieListComponent to BodyComponent
-	 */
-	private backdropSubject = new Subject<Movie[]>();
+	private menuItemSubject = new Subject<number>();
+	public menuItem$ = this.menuItemSubject.asObservable();
 
-	public backdrop$ = this.backdropSubject.asObservable();
-
-	sendPosterData(data: Movie[]) {
-		this.backdropSubject.next(data);
+	sendMenuItemId(id: number) {
+		this.menuItemSubject.next(id);
 	}
 }

@@ -28,7 +28,6 @@
       <div>
         <app-dropdown-i18n></app-dropdown-i18n>
       </div>
-
     </div>
   </div>
 </nav>
@@ -39,7 +38,7 @@
   <div>
     <ul *ngFor="let item of menuSidebar; let i = index">
       <li>
-        <a href="/">
+        <a (click)="onClickMenu(i)">
           <span>{{item.title}}</span>
         </a>
       </li>
