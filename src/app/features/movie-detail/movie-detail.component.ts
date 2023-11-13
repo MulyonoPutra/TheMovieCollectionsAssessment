@@ -36,8 +36,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 		this.findById();
 
 		this.movieStore = this.localStorageService.getItem('MOVIES');
-
-		// Set isFavorite based on whether the movie is in the array
 		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
 	}
 
