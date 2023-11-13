@@ -28,8 +28,8 @@ export class MovieService {
 		);
 	}
 
-	findPopularMovies(): Observable<Movie[]> {
-		const url = `${this.endpoint}/movie/popular`;
+	findPopularMovies(page?: number): Observable<Movie[]> {
+		const url = `${this.endpoint}/movie/popular?page=${page}`;
 		const params = { api_key: this.apiKey };
 		return this.http.get<HttpResponseEntity<Movie[]>>(url, { params }).pipe(
 			map((response) => response.results),

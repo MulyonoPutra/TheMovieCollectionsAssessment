@@ -4,6 +4,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { HeroComponent } from 'src/app/core/components/hero/hero.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Movie } from 'src/app/core/models/movie';
 import { MovieService } from 'src/app/core/services/movie.service';
@@ -19,7 +21,14 @@ type TrackByItemType = Trending | Movie | TopRated;
 @Component({
 	selector: 'app-movie-list',
 	standalone: true,
-	imports: [CommonModule, ComponentsModule, LazyLoadImageModule, HeroComponent, TranslateModule],
+	imports: [
+		CommonModule,
+		ComponentsModule,
+		LazyLoadImageModule,
+		HeroComponent,
+		TranslateModule,
+		InfiniteScrollModule,
+	],
 	templateUrl: './movie-list.component.html',
 	styleUrls: ['./movie-list.component.scss'],
 })
@@ -42,6 +51,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
 
 	defaultTime: string = 'day';
 
+	throttle = 0;
+	distance = 2;
+	page = 1;
+
 	constructor(
 		private readonly moviesService: MovieService,
 		private readonly sharedService: SharedService,
@@ -56,7 +69,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.mediumScreenSize();
 	}
 
-	private findAllTrendings(time: string): void {
+	findAllTrendings(time: string): void {
 		this.moviesService
 			.findTrendingMovies(time)
 			.pipe(takeUntil(this.destroySubject))
@@ -64,34 +77,40 @@ export class MovieListComponent implements OnInit, OnDestroy {
 				next: (response: Trending[]) => {
 					this.trending = response;
 				},
-				error: () => {},
+        error: (error: HttpErrorResponse) => {
+          console.error(error);
+        },
 				complete: () => {},
 			});
 	}
 
-	private findPopular(): void {
+	findPopular(): void {
 		this.moviesService
-			.findPopularMovies()
+			.findPopularMovies(++this.page)
 			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: Movie[]) => {
 					this.movies = response;
-					this.generateBackdropPath(response);
 				},
-				error: () => {},
+        error: (error: HttpErrorResponse) => {
+          console.error(error);
+        },
 				complete: () => {},
 			});
 	}
 
-	private findTopRated(): void {
+	findTopRated(): void {
 		this.moviesService
 			.findTopRatedMovies()
 			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: TopRated[]) => {
 					this.topRated = response;
+					this.generateBackdropPath(response);
 				},
-				error: () => {},
+				error: (error: HttpErrorResponse) => {
+          console.error(error);
+        },
 				complete: () => {},
 			});
 	}

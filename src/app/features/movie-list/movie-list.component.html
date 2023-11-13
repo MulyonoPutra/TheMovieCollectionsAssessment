@@ -121,7 +121,8 @@
           </h3>
         </div>
       </div>
-      <div class="lg:hidden md:grid md:grid-cols-4">
+      <div class="lg:hidden md:grid md:grid-cols-4" infinite-scroll [infiniteScrollDistance]="distance" [infiniteScrollThrottle]="throttle"
+  (scrolled)="findPopular()">
         <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackByFn">
           <div>
             <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
