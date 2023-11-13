@@ -39,22 +39,23 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	topRated!: TopRated[];
 
 	poster!: string;
-	menuId!: number;
-	activeTabIndex = 0;
 
+	menuId!: number;
+  page: number = 1;
+  throttle: number = 0;
+  distance: number = 2;
+  activeTabIndex: number = 0;
+
+  isLoading: boolean = false;
 	isMediumSize: boolean = false;
-  isLoading = false;
+
+  defaultTime: string = 'day';
 
 	tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
 		{ label: 'This Week', classes: 'inline-block p-4 rounded-t-lg' },
 	];
 
-	defaultTime: string = 'day';
-
-	throttle = 0;
-	distance = 2;
-	page = 1;
 
 	constructor(
 		private readonly moviesService: MovieService,
@@ -78,9 +79,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
 				next: (response: Trending[]) => {
 					this.trending = response;
 				},
-        error: (error: HttpErrorResponse) => {
-          console.error(error);
-        },
+				error: (error: HttpErrorResponse) => {
+					console.error(error);
+				},
 				complete: () => {},
 			});
 	}
@@ -93,10 +94,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
 				next: (response: Movie[]) => {
 					this.movies = response;
 				},
-        error: (error: HttpErrorResponse) => {
-          console.error(error);
-        },
-        complete: () => this.toggleLoading(),
+				error: (error: HttpErrorResponse) => {
+					console.error(error);
+				},
+				complete: () => this.toggleLoading(),
 			});
 	}
 
@@ -110,23 +111,23 @@ export class MovieListComponent implements OnInit, OnDestroy {
 					this.generateBackdropPath(response);
 				},
 				error: (error: HttpErrorResponse) => {
-          console.error(error);
-        },
+					console.error(error);
+				},
 				complete: () => {},
 			});
 	}
 
-	protected setActiveTab(index: number): void {
+	setActiveTab(index: number): void {
 		this.activeTabIndex = index;
 		const time = index === 0 ? 'day' : 'week';
 		this.findAllTrendings(time);
 	}
 
-	protected trackByFn(index: number, item: TrackByItemType): number {
+	trackByFn(index: number, item: TrackByItemType): number {
 		return item.id;
 	}
 
-	protected onNavigate(id: number): void {
+	onNavigate(id: number): void {
 		this.router.navigateByUrl('/movie-detail/' + id);
 	}
 
@@ -157,9 +158,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.isMediumSize = width >= 600 && width <= 1024;
 	}
 
-  toggleLoading() {
-    this.isLoading = !this.isLoading;
-  }
+	toggleLoading() {
+		this.isLoading = !this.isLoading;
+	}
 
 	ngOnDestroy(): void {
 		this.destroySubject.next();

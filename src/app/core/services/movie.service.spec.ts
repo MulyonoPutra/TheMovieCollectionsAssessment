@@ -6,24 +6,23 @@ import { Trending } from '../models/trending';
 
 describe('MovieService', () => {
 	let service: MovieService;
-  let httpMock: HttpTestingController;
+	let httpMock: HttpTestingController;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [MovieService],
-    });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [HttpClientTestingModule],
+			providers: [MovieService],
+		});
 
-    service = TestBed.inject(MovieService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
+		service = TestBed.inject(MovieService);
+		httpMock = TestBed.inject(HttpTestingController);
+	});
 
-  afterEach(() => {
-    httpMock.verify();
-  });
+	afterEach(() => {
+		httpMock.verify();
+	});
 
 	it('should be created', () => {
 		expect(service).toBeTruthy();
 	});
-
 });

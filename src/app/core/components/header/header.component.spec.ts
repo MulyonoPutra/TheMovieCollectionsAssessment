@@ -13,7 +13,14 @@ describe('HeaderComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-      imports: [HeaderComponent, CommonModule, ComponentsModule, RouterTestingModule, TranslateModule.forRoot(), RouterModule],
+			imports: [
+				HeaderComponent,
+				CommonModule,
+				ComponentsModule,
+				RouterTestingModule,
+				TranslateModule.forRoot(),
+				RouterModule,
+			],
 			providers: [],
 		});
 		fixture = TestBed.createComponent(HeaderComponent);

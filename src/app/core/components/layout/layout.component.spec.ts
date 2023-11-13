@@ -10,7 +10,7 @@ describe('LayoutComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-      imports: [LayoutComponent, TranslateModule.forRoot(), RouterTestingModule],
+			imports: [LayoutComponent, TranslateModule.forRoot(), RouterTestingModule],
 		});
 		fixture = TestBed.createComponent(LayoutComponent);
 		component = fixture.componentInstance;
