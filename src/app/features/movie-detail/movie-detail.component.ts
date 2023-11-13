@@ -29,13 +29,13 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	constructor(
 		private readonly route: ActivatedRoute,
 		private readonly movieService: MovieService,
-    private readonly localStorageService: LocalStoreService
+		private readonly localStorageService: LocalStoreService,
 	) {}
 
 	ngOnInit(): void {
 		this.findById();
 
-    this.movieStore = this.localStorageService.getItem('MOVIES');
+		this.movieStore = this.localStorageService.getItem('MOVIES');
 
 		// Set isFavorite based on whether the movie is in the array
 		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
@@ -67,7 +67,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 			this.movieStore.splice(index, 1);
 		}
 
-    this.localStorageService.setItem('MOVIES', this.movieStore)
+		this.localStorageService.setItem('MOVIES', this.movieStore);
 	}
 
 	private setImageUrl(response: MovieDetail) {

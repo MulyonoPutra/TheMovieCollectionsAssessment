@@ -6,6 +6,6 @@
 		"top": "Top Rated",
 		"favorite": "My favorite movies",
 		"search": "Search Results",
-    "emptyState": "Your list of favorite movies is currently empty. Add some movies to your favorites!"
+		"emptyState": "Your list of favorite movies is currently empty. Add some movies to your favorites!"
 	}
 }

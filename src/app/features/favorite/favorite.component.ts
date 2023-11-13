@@ -19,14 +19,14 @@ export class FavoriteComponent implements OnInit {
 	protected movies!: MovieDetail[];
 
 	private readonly router = inject(Router);
-  private readonly localStore = inject(LocalStoreService);
+	private readonly localStore = inject(LocalStoreService);
 
 	ngOnInit(): void {
 		this.getlocalStore();
 	}
 
 	getlocalStore(): MovieDetail[] {
-    return this.movies = this.localStore.getItem('MOVIES');
+		return (this.movies = this.localStore.getItem('MOVIES'));
 	}
 
 	trackById(index: number, item: MovieDetail): number {

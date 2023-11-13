@@ -30,10 +30,10 @@ export class MovieListComponent implements OnInit, OnDestroy {
 	topRated!: TopRated[];
 
 	poster!: string;
-  menuId!: number;
+	menuId!: number;
 	activeTabIndex = 0;
 
-  isMediumSize: boolean = false;
+	isMediumSize: boolean = false;
 
 	tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
@@ -53,7 +53,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.findPopular();
 		this.findTopRated();
 		this.onReceiveFromHeader();
-    this.mediumScreenSize();
+		this.mediumScreenSize();
 	}
 
 	private findAllTrendings(time: string): void {
@@ -69,7 +69,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-  private findPopular(): void {
+	private findPopular(): void {
 		this.moviesService
 			.findPopularMovies()
 			.pipe(takeUntil(this.destroySubject))
@@ -83,7 +83,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-  private findTopRated(): void {
+	private findTopRated(): void {
 		this.moviesService
 			.findTopRatedMovies()
 			.pipe(takeUntil(this.destroySubject))
@@ -129,15 +129,15 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		});
 	}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.mediumScreenSize();
-  }
+	@HostListener('window:resize', ['$event'])
+	onResize(): void {
+		this.mediumScreenSize();
+	}
 
-  mediumScreenSize() {
-    const width = window.innerWidth;
-    this.isMediumSize = width >= 600 && width <= 1024;
-  }
+	mediumScreenSize() {
+		const width = window.innerWidth;
+		this.isMediumSize = width >= 600 && width <= 1024;
+	}
 
 	ngOnDestroy(): void {
 		this.destroySubject.next();
