@@ -42,8 +42,8 @@
     <!-- Desktop Version End -->
 
     <!-- Mobile Version Start -->
-    <div *ngIf="menuId === 0">
-      <div class="flex space-x-4 py-2 lg:hidden">
+    <div *ngIf="menuId === 0 || isMediumSize">
+      <div class="flex space-x-4 py-2 lg:hidden md">
         <div class="flex items-center">
           <h3 class="title" translate>
             app.trending
@@ -99,7 +99,7 @@
         </div>
       </div>
       <div class="lg:max-w-full overflow-x-auto">
-        <div class="hidden lg:block md:hidden mb-2">
+        <div class="hidden lg:block md:block mb-2">
           <div class="flex space-x-4">
             <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackByFn">
               <div>
@@ -113,7 +113,7 @@
     <!-- Desktop Version End -->
 
     <!-- Mobile Version Start -->
-    <div *ngIf="menuId === 1">
+    <div *ngIf="menuId === 1 || isMediumSize">
       <div class="flex space-x-4 py-2 lg:hidden">
         <div class="flex items-center">
           <h3 class="title" translate>
@@ -135,6 +135,8 @@
 
   <!-- Top Rated Section Start -->
   <section>
+
+    <!-- Desktop Version Start -->
     <div class="hidden lg:block md:hidden">
       <div class="flex space-x-4 py-2">
         <div class="flex items-center">
@@ -155,8 +157,10 @@
         </div>
       </div>
     </div>
+    <!-- Desktop Version End -->
 
-    <div *ngIf="menuId === 2">
+    <!-- Mobile Version Start -->
+    <div *ngIf="menuId === 2 || isMediumSize">
       <div class="flex space-x-4 py-2">
         <div class="flex items-center">
           <h3 class="title" translate>
@@ -172,6 +176,7 @@
         </ng-container>
       </div>
     </div>
+    <!-- Mobile Version End -->
   </section>
   <!-- Top Rated Section End -->
 

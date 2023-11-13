@@ -5,10 +5,9 @@
       app.favorite</h1>
   </div>
 
-  <div class="grid grid-cols-6 gap-4 p-4">
+  <div class="wrapper">
     <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackById">
       <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
     </ng-container>
   </div>
-
 </section>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
@@ -25,15 +25,17 @@ type TrackByItemType = Trending | Movie | TopRated;
 })
 export class MovieListComponent implements OnInit, OnDestroy {
 	private destroySubject = new Subject<void>();
-	protected movies!: Movie[];
-	protected trending!: Trending[];
-	protected topRated!: TopRated[];
+	movies!: Movie[];
+	trending!: Trending[];
+	topRated!: TopRated[];
 
-	protected poster!: string;
+	poster!: string;
   menuId!: number;
-	protected activeTabIndex = 0;
+	activeTabIndex = 0;
 
-	protected tabs: Tabs[] = [
+  isMediumSize: boolean = false;
+
+	tabs: Tabs[] = [
 		{ label: 'Day', classes: 'inline-block p-4 rounded-t-lg' },
 		{ label: 'This Week', classes: 'inline-block p-4 rounded-t-lg' },
 	];
@@ -51,6 +53,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.findPopular();
 		this.findTopRated();
 		this.onReceiveFromHeader();
+    this.mediumScreenSize();
 	}
 
 	private findAllTrendings(time: string): void {
@@ -66,7 +69,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	private findPopular() {
+  private findPopular(): void {
 		this.moviesService
 			.findPopularMovies()
 			.pipe(takeUntil(this.destroySubject))
@@ -80,7 +83,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	private findTopRated() {
+  private findTopRated(): void {
 		this.moviesService
 			.findTopRatedMovies()
 			.pipe(takeUntil(this.destroySubject))
@@ -117,7 +120,7 @@ export class MovieListComponent implements OnInit, OnDestroy {
 		this.poster = `${url}/${filter}/${backdrop}`;
 		return this.poster;
 	}
-  
+
 	onReceiveFromHeader(): void {
 		this.sharedService.menuItem$.subscribe({
 			next: (id) => {
@@ -125,6 +128,16 @@ export class MovieListComponent implements OnInit, OnDestroy {
 			},
 		});
 	}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.mediumScreenSize();
+  }
+
+  mediumScreenSize() {
+    const width = window.innerWidth;
+    this.isMediumSize = width >= 600 && width <= 1024;
+  }
 
 	ngOnDestroy(): void {
 		this.destroySubject.next();
