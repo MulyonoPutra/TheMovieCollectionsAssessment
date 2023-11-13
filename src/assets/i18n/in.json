@@ -5,6 +5,7 @@
 		"popular": "Populer",
 		"top": "Peringkat Teratas",
 		"favorite": "Favorit Saya",
-		"search": "Hasil Pencarian"
+		"search": "Hasil Pencarian",
+    "emptyState": "Daftar film favorit Anda saat ini kosong. Tambahkan beberapa film ke daftar favorit Anda!"
 	}
 }

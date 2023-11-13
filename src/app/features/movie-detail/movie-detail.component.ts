@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpUrl } from 'src/app/shared/utils/http-url';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 import { MovieDetail } from 'src/app/core/models/movie-detail';
 import { MovieService } from 'src/app/core/services/movie.service';
 import { StaticIcons } from 'src/app/shared/static/static-icons';
@@ -16,7 +17,7 @@ import { StaticIcons } from 'src/app/shared/static/static-icons';
 	styleUrls: ['./movie-detail.component.scss'],
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
-	private destroySubject = new Subject<void>();
+	private destroy$ = new Subject<void>();
 	movie!: MovieDetail;
 	imageUrls!: string;
 	poster!: string;
@@ -28,13 +29,13 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	constructor(
 		private readonly route: ActivatedRoute,
 		private readonly movieService: MovieService,
+    private readonly localStorageService: LocalStoreService
 	) {}
 
 	ngOnInit(): void {
 		this.findById();
-		// Load the favorite status from local storage
-		const localStore = localStorage.getItem('MOVIES');
-		this.movieStore = localStore ? JSON.parse(localStore) : [];
+
+    this.movieStore = this.localStorageService.getItem('MOVIES');
 
 		// Set isFavorite based on whether the movie is in the array
 		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
@@ -44,7 +45,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 		const id = this.route.snapshot.paramMap.get('id')!;
 		this.movieService
 			.findMovieById(id)
-			.pipe(takeUntil(this.destroySubject))
+			.pipe(takeUntil(this.destroy$))
 			.subscribe({
 				next: (response: MovieDetail) => {
 					this.movie = response;
@@ -70,9 +71,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 			this.movieStore.splice(index, 1);
 		}
 
-		// Convert the updated array to a JSON string
-		const movieStoreUpdated = JSON.stringify(this.movieStore);
-		localStorage.setItem('MOVIES', movieStoreUpdated);
+    this.localStorageService.setItem('MOVIES', this.movieStore)
 	}
 
 	private setImageUrl(response: MovieDetail) {
@@ -82,7 +81,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.destroySubject.next();
-		this.destroySubject.complete();
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 }

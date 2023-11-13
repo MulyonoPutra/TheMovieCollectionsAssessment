@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LocalStoreService } from 'src/app/shared/services/local-store.service';
 import { MovieDetail } from 'src/app/core/models/movie-detail';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -18,14 +19,14 @@ export class FavoriteComponent implements OnInit {
 	protected movies!: MovieDetail[];
 
 	private readonly router = inject(Router);
+  private readonly localStore = inject(LocalStoreService);
 
 	ngOnInit(): void {
 		this.getlocalStore();
 	}
 
 	getlocalStore(): MovieDetail[] {
-		const localStore = localStorage.getItem('MOVIES')!;
-		return (this.movies = JSON.parse(localStore));
+    return this.movies = this.localStore.getItem('MOVIES');
 	}
 
 	trackById(index: number, item: MovieDetail): number {

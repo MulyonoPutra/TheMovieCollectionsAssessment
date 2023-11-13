@@ -1,13 +1,18 @@
 <section>
-  <div class="flex container mx-auto justify-center">
-    <h1 translate
-      class="title">
+  <div class="content-center" *ngIf="movies && movies.length > 0">
+    <h1 translate class="title">
       app.favorite</h1>
   </div>
 
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="movies && movies.length > 0; else noFavorites">
     <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackById">
       <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
     </ng-container>
   </div>
+
+  <ng-template #noFavorites>
+    <div class="content-center">
+      <p translate class="empty-state">app.emptyState</p>
+    </div>
+  </ng-template>
 </section>
