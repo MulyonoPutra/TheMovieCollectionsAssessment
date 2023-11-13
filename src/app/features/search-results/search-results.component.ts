@@ -26,10 +26,10 @@ export class SearchResultsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.movieResults();
+    this.findMovie();
   }
 
-  movieResults(): void {
+  findMovie(): void {
     this.route.queryParams.subscribe((params) => {
       this.query = params['query'];
       if (this.query) {

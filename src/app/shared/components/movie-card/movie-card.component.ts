@@ -18,9 +18,9 @@ export class MovieCardComponent implements OnInit {
 	imageUrls!: string;
 	isFavorite: boolean = false;
 
-	favIcon = StaticIcons.fav;
-	favRedIcon = StaticIcons.favRed;
-	playIcon = StaticIcons.play;
+	favIcon: string = StaticIcons.fav;
+  favRedIcon: string = StaticIcons.favRed;
+  playIcon: string = StaticIcons.play;
 
 	ngOnInit(): void {
 		this.imageUrls = `${HttpUrl.baseImageUrl}/${HttpUrl.imageResource}/w500/${this.movies?.poster_path}`;

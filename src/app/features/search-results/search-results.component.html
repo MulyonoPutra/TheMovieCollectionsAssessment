@@ -1,10 +1,18 @@
-  <div class="flex container mx-auto justify-center">
-    <h1 translate
-      class="title-gradient">
-      app.search</h1> <span class="title-gradient italic">:  {{ query }}</span>
+<section>
+    <div class="flex container mx-auto justify-center">
+    <h1 translate class="title-gradient">app.search</h1>
+    <span class="result underline text-sm">: {{ query }}</span>
   </div>
-  <div class="grid grid-cols-6 gap-4 p-4 mt-4">
+  <div class="card-wrapper" *ngIf="movies && movies.length > 0; else noFavorites">
     <ng-container *ngFor="let movie of movies; let i = index; trackBy: trackById">
       <app-movie-card [movies]="movie" (clicked)="onNavigate(movie.id)"></app-movie-card>
     </ng-container>
   </div>
+
+    <ng-template #noFavorites>
+    <div class="content-center">
+      <p translate class="empty-state">app.noResults</p>
+    </div>
+  </ng-template>
+
+</section>

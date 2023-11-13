@@ -1,15 +1,40 @@
-.card-content {
-	@apply absolute bottom-0 left-0 p-6 bg-black rounded-lg bg-opacity-25 w-full inset-x-0 px-6 py-4;
+.web-card-wrapper {
+  @apply cursor-pointer hidden md:block lg:block w-full lg:w-[200px] h-fit border-4 border-gray-200 rounded-lg;
 
-	.title {
-		@apply text-xl font-semibold text-white capitalize;
-	}
+  img.poster {
+    @apply h-[300px] lg:h-full w-full object-cover rounded-lg;
+  }
 
-	.description {
-		@apply text-left tracking-tight text-xs font-medium text-white mt-2;
-	}
+  .detail-desc {
+    @apply absolute h-full w-full bg-black/20 flex items-center justify-center rounded-lg;
 
-	.fav:hover {
-		filter: invert(27%) sepia(81%) saturate(7436%) hue-rotate(355deg) brightness(98%) contrast(120%);
-	}
+    .card-content {
+        @apply absolute bottom-0 left-0 p-6 bg-black rounded-lg bg-opacity-25 w-full inset-x-0 px-6 py-4;
+
+        .title {
+          @apply text-xl font-semibold text-white capitalize;
+        }
+
+        .description {
+          @apply text-left tracking-tight text-xs font-medium text-white mt-2;
+        }
+
+        .date {
+          @apply absolute bottom-1 text-left tracking-tight text-xs font-bold text-white;
+        }
+      }
+  }
 }
+
+.mobile-card-wrapper {
+  @apply flex max-w-sm w-full bg-white shadow-md rounded-lg overflow-hidden mx-auto;
+
+  .hover-transition {
+    @apply overflow-hidden rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl text-white;
+
+    .card-gradient {
+      @apply absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900 to-transparent;
+    }
+  }
+}
+
