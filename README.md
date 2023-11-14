@@ -64,3 +64,6 @@ Run `ng lint` to execute the ES Lint via [ESLint Angular](https://www.npmjs.com/
 - Design Reference: `https://www.themoviedb.org/?language=id-ID`
 - API Reference: `https://developer.themoviedb.org/reference/intro/getting-started.`
 - Other Reference: `https://chat.openai.com/`
+
+## Screenshots
+
