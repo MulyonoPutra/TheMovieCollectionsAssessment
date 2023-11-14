@@ -36,12 +36,12 @@
   <div>
     <ul >
       <li>
-        <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+        <a [routerLink]="['/']" routerLinkActive="router-link-active" class="list">
           <span>Home</span>
         </a>
       </li>
       <li *ngFor="let item of menuSidebar; let i = index">
-        <button type="button" (click)="onClickMenu(i)" (keyup.enter)="onClickMenu(i)">
+        <button class="list" type="button" (click)="onClickMenu(i)" (keyup.enter)="onClickMenu(i)">
           <span>{{item.title}}</span>
         </button>
       </li>
