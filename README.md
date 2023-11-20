@@ -12,6 +12,7 @@ By utilizing the TMDB API (The Movie Database API) available at: https://develop
 - Movie Display: Showcasing a list of films with essential information such as posters, titles, and descriptions.
 - Frontend supports multiple languages (e.g., English & Indonesian) for a seamless user experience.
 - Infinite Scroll
+- Search
 
 
 ## Objective Completed
@@ -19,7 +20,7 @@ By utilizing the TMDB API (The Movie Database API) available at: https://develop
 - Favorite Feature: Ensure users can mark movies as favorites.
 - Integration with TMDb API: Utilizing the TMDb API to fetch the necessary movie data
 - Movie Display: Showcasing a list of films with essential information such as posters, titles, and descriptions.
-- Movie Detail View: Providing a detailed page for each film that contains additional information.
+- Movie Detail View: Provide a detailed page for each film that contains additional information.
 - Responsive Design: Ensuring the interface is responsive to support usage on various devices, such as desktops, tablets, and phones.
 - Local Storage for Favorite Data: Implementing local storage for user's favorite data to maintain accessibility when users revisit the application.
 - User Interactions: Ensuring a comfortable and intuitive user experience for marking and removing movies from the favorite list.
@@ -60,10 +61,18 @@ Run `ng lint` to execute the ES Lint via [ESLint Angular](https://www.npmjs.com/
 - Angular Infinite Scroll: `https://www.npmjs.com/package/ngx-infinite-scroll`
 - Angular ESLint Configuration: `https://www.freecodecamp.org/news/how-to-add-eslint-to-an-angular-application/`
 - Code Formatter: `https://prettier.io/`
-- Angular Intenationalization: `https://github.com/ngx-translate/core`
+- Angular Internationalization: `https://github.com/ngx-translate/core`
 - Design Reference: `https://www.themoviedb.org/?language=id-ID`
 - API Reference: `https://developer.themoviedb.org/reference/intro/getting-started.`
 - Other Reference: `https://chat.openai.com/`
 
 ## Screenshots
+![screencapture-localhost-4200-movie-detail-670292-2023-11-14-18_35_38](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/84170082-7f70-4c8a-b574-0dd701271fc7)
+![screencapture-localhost-4200-2023-11-14-18_35_25](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/96ff282c-b10a-436d-90fd-d50340f83d1c)
+![screencapture-localhost-4200-favorites-2023-11-14-18_35_56](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/4d143d1d-7bfb-48e5-ad0b-f86c429a0376)
+![screencapture-localhost-4200-movie-detail-670292-2023-11-14-18_35_38](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/496182cf-586e-4754-a2ad-9d28837430e9)
+![screencapture-localhost-4200-search-2023-11-14-18_36_15](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/ec128b26-777d-4565-b79d-504812fa0de2)
+![Screenshot_1](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/1bb9a8b5-8989-486a-932a-5f22948f70e9)
+![screencapture-localhost-4200-search-2023-11-14-18_36_15](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/e0fdcdc3-52ec-4dd4-9a6c-6877eec55f64)
+![Screenshot_2](https://github.com/MulyonoPutra/the-movie-collections/assets/50153639/949b4b8f-cde4-4975-b410-b6ad845e1397)
 
