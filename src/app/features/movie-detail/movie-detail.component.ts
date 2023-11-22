@@ -36,7 +36,9 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 		this.findById();
 
 		this.movieStore = this.localStorageService.getItem('MOVIES');
-		this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
+    if(this.movieStore){
+      this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie.id);
+    }
 	}
 
 	findById(): void {
@@ -48,7 +50,10 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 				.subscribe({
 					next: (response: MovieDetail) => {
 						this.movie = response;
-						this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie?.id);
+
+            if(this.movieStore){
+              this.isFavorite = this.movieStore.some((movie) => movie.id === this.movie.id);
+            }
 						this.movie.isFavorited = this.isFavorite;
 						this.setImageUrl(response);
 					},
