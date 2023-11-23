@@ -64,7 +64,8 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   toggleFavorite(): void {
     this.isFavorite = !this.isFavorite;
     if (this.movie && this.movie.id !== undefined && this.movie.id !== null) {
-      const index = this.movieStore.findIndex((movie) => movie.id === this.movie.id);
+      const index = this.movieStore?.findIndex((movie) => movie.id === this.movie.id);
+      console.log(index);
       if (this.isFavorite && index === -1) {
         this.movieStore.push(this.movie);
       } else if (!this.isFavorite && index !== -1) {
