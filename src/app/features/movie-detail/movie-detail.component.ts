@@ -64,14 +64,15 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 	toggleFavorite(): void {
 		this.isFavorite = !this.isFavorite;
 
-		const index = this.movieStore.findIndex((movie) => movie.id === this.movie?.id);
-
-		if (this.isFavorite && index === -1) {
-			this.movieStore.push(this.movie);
-		} else if (!this.isFavorite && index !== -1) {
-			this.movieStore.splice(index, 1);
-		}
-
+    if (this.movie.id !== undefined && this.movie.id !== null){
+      const index = this.movieStore.findIndex((movie) => movie.id === this.movie.id);
+      if (this.isFavorite && index === -1) {
+        this.movieStore.push(this.movie);
+      } else if (!this.isFavorite && index !== -1) {
+        this.movieStore.splice(index, 1);
+      }
+    }
+    
 		this.localStorageService.setItem('MOVIES', this.movieStore);
 	}
 
